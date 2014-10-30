@@ -26,20 +26,22 @@ $( document ).ready(function() {
 	    longitude.value = m.lng;
 	}
 
-	$('#search-btn').click(function(){
+	$('#search-btn').click(function(e){
+		e.preventDefault();
+
 		var searchString = $('#search').val();
 		$.getJSON('http://nominatim.openstreetmap.org/search?limit=5&format=json&q='+searchString, function(data){
 			var items = [];
 			$.each(data, function(key, val) {
 			  items.push(
-			    "<li><a href='#' data-lat='"+val.lat+"' data-lng='"+val.lon+"'>" + val.display_name + '</a></li>'
+			    "<li class='list-group-item'><a href='#' data-lat='"+val.lat+"' data-lng='"+val.lon+"'>" + val.display_name + '</a></li>'
 			  );
 			});
 
 			$('#search-results').empty();
 	        if (items.length != 0) {
-	            $('<p>Resultats</p>').appendTo('#search-results');
-	            $('<ul/>').html(items.join('')).appendTo('#search-results');
+	            // $('<p>Resultats</p>').appendTo('#search-results');
+	            $('<ul/>').addClass("list-group").html(items.join('')).appendTo('#search-results');
 	        } else {
 	            $('<p>', { html: "No results found" }).appendTo('#search-results');
 	        }
