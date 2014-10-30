@@ -1,6 +1,9 @@
 
 #map {
     min-height: 300px;
+	width: 500px;
+	height: 300px;
+    margin-right: 1em;
 }
 
 #search-results {
