@@ -30,6 +30,9 @@
     </div>
 
     <h2>Moyen de contact</h2>
+    <p class="help-block">
+Un moyen de contact au moins est nécessaire
+    </p>
     <p>
       <div class="form-group">
         <label for="email">Email</label>
@@ -68,6 +71,11 @@
       ADSL
     </label></p>
     <h3>Débits</h3>
+    <p class="help-block">
+      Il est possible de limiter techniquement la quantité de bande passante
+    partagée avec les autres expérimentateurs afin de ne pas pénaliser votre
+    confort.
+    </p>
     <p>
       <label for="bandwidth">Débit total (Mbps)</label>
       <input name="bandwidth" type="number" class="form-control"/>
@@ -86,6 +94,7 @@
           <input type="text" name="search" id="search" placeholder="rue du calvaire, nantes" class="form-control" />
           <span id="search-btn" class="btn btn-default btn-lg">Recherche</span>
           <div id="search-results" class=""></div>
+          <p class="help-block">Déplacer le marqueur pour pointer précisément le bâtiment au besoin</p>
         </div>
         <div class="form-group form-group-sm">
         <label for="latitude">Latitude</label>
@@ -128,9 +137,11 @@
     <input type="checkbox" name="vehicle" value="NE" class="checkbox-inline">Nord-Est<br>
     </label>
 
+    <p class="help-block">Les antennes peuvent être positionées soit sur le toit soit aux fenêtres</p>
+
     <p>
       <label for="floor">Étage</label>
-      <input name="floor" type="number" class="form-control" placeholder="Indiquer  « 0 » pour le RDC"/>
+      <input name="floor" type="number" class="form-control" placeholder="Indiquer  « 0 » pour le Rez-de-chaussée"/>
     </p>
 
     <input type="submit" value="Envoyer">
