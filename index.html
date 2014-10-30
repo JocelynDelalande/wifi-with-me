@@ -24,48 +24,60 @@
   <nav class="navbar">
     <div class="navbar-brand">Coucou</div>
   </nav>
-  <h1>Coucou</h1>
-  <form>
-    <p>
+  <h1>Réseau wifi expérimental</h1>
+  <section role="main" class="container">
+  <form role="form">
+    <div class="form-group">
     <label for="name">Nom / Pseudo</label>
-    <input name="name" type="text"/>
-    </p>
+    <input name="name" type="text" class="form-control"/>
+    </div>
 
     <h2>Moyen de contact</h2>
     <p>
-      <label for="email">Email</label>
-      <input name="email" type="email"/>
-      et/ou
-      <label for="email">Téléphone</label>
-      <input name="email" type="tel"/>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input name="email" type="email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Téléphone</label>
+        <input name="email" type="tel" class="form-control"/>
+      </div>
     </p>
 
     <h2>Je souhaite</h2>
-    <p>
-      <input type="radio" name="contrib-type" value="share"/>
-      Partager une partie de ma connexion <br />
-      <input type="radio" name="contrib-type" value="connect"/>
-      Me raccorder au réseau expérimental
+    <p class="radio">
+      <label>
+      <input type="radio" name="contrib-type" value="share" class="form-control"/> Partager une partie de ma connexion
+      </label>
+    </p>
+    <p class="radio">
+      <label>
+      <input type="radio" name="contrib-type" value="connect" class="form-control"/> Me raccorder au réseau expérimental
+      </label>
     </p>
 
     <h2>Partager une connexion</h2>
-    <h3>Ma connexion</h3>
-    <p>
+    <h3>Type de connexion</h3>
+    <p class="radio"><label>
       <input type="radio" name="contrib-type" value="share"/>
       Fibre <br />
+    </label></p>
+    <p class="radio"><label>
       <input type="radio" name="contrib-type" value="connect"/>
       VDSL <br />
-
+    </label></p>
+    <p class="radio"><label>
       <input type="radio" name="contrib-type" value="share"/>
       ADSL <br />
-    </p>
+    </label></p>
+    <h3>Débits</h3>
     <p>
-      <label for="bandwidth">Débit (Mbps)</label>
-      <input name="bandwidth" type="number"/>
+      <label for="bandwidth">Débit total (Mbps)</label>
+      <input name="bandwidth" type="number" class="form-control"/>
     </p>
     <p>
       <label for="share-part">Je souhaite partager (au max.) (Mbps)</label>
-      <input name="share-part" type="number"/>
+      <input name="share-part" type="number" class="form-control"/>
     </p>
 
     <h2>Ma localisation</h2>
@@ -74,21 +86,42 @@
 
     <h3>Orientation(s) de mes fenêtres</h3>
 
-    <input type="checkbox" name="vehicle" value="N">Nord<br />
-    <input type="checkbox" name="vehicle" value="NO">Nord-Ouest<br />
-    <input type="checkbox" name="vehicle" value="O">Ouest<br />
-    <input type="checkbox" name="vehicle" value="SO">Sud-Ouest<br />
-    <input type="checkbox" name="vehicle" value="S">Sud<br>
-    <input type="checkbox" name="vehicle" value="SE">Sud-Est<br>
-    <input type="checkbox" name="vehicle" value="E">Est<br>
-    <input type="checkbox" name="vehicle" value="NE">Nord-Est<br>
+    <label class="checkbox-inline">
+    <input type="checkbox" name="vehicle" value="N">Nord
+    </label>
+    <label class="checkbox-inline">
+    <input type="checkbox" name="vehicle" value="NO" class="checkbox-inline">Nord-Ouest<br />
+    </label>
+    <label class="checkbox-inline">
+    <input type="checkbox" name="vehicle" value="O" class="checkbox-inline">Ouest<br />
+    </label>
+    <label class="checkbox-inline">
+    <input type="checkbox" name="vehicle" value="SO" class="checkbox-inline">Sud-Ouest<br />
+    </label>
+    <label class="checkbox-inline">
+
+    <input type="checkbox" name="vehicle" value="S" class="checkbox-inline">Sud<br>
+    </label>
+    <label class="checkbox-inline">
+
+    <input type="checkbox" name="vehicle" value="SE" class="checkbox-inline">Sud-Est<br>
+    </label>
+    <label class="checkbox-inline">
+
+    <input type="checkbox" name="vehicle" value="E" class="checkbox-inline">Est<br>
+    </label>
+    <label class="checkbox-inline">
+
+    <input type="checkbox" name="vehicle" value="NE" class="checkbox-inline">Nord-Est<br>
+    </label>
 
     <p>
       <label for="floor">Étage</label>
-      <input name="floor" type="number"/>
+      <input name="floor" type="number" class="form-control" placeholder="Indiquer  « 0 » pour le RDC"/>
     </p>
 
     <input type="submit" value="Envoyer">
   </form>
+  </section>
 </body>
 </html>
