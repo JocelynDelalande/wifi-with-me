@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FAIMaison − contribution à l'expérimentation wifi</title>
+    <script src="dist/js/bootstrap.js"></script>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">Coucou</div>
+  </nav>
+  <h1>Coucou</h1>
+  <form>
+    <p>
+    <label for="name">Nom / Pseudo</label>
+    <input name="name" type="text"/>
+    </p>
+
+    <h2>Moyen de contact</h2>
+    <p>
+      <label for="email">Email</label>
+      <input name="email" type="email"/>
+      et/ou
+      <label for="email">Téléphone</label>
+      <input name="email" type="tel"/>
+    </p>
+
+    <h2>Je souhaite</h2>
+    <p>
+      <input type="radio" name="contrib-type" value="share"/>
+      Partager une partie de ma connexion <br />
+      <input type="radio" name="contrib-type" value="connect"/>
+      Me raccorder au réseau expérimental
+    </p>
+
+    <h2>Partager une connexion</h2>
+    <h3>Ma connexion</h3>
+    <p>
+      <input type="radio" name="contrib-type" value="share"/>
+      Fibre <br />
+      <input type="radio" name="contrib-type" value="connect"/>
+      VDSL <br />
+
+      <input type="radio" name="contrib-type" value="share"/>
+      ADSL <br />
+    </p>
+    <p>
+      <label for="bandwidth">Débit (Mbps)</label>
+      <input name="bandwidth" type="number"/>
+    </p>
+    <p>
+      <label for="share-part">Je souhaite partager (au max.) (Mbps)</label>
+      <input name="share-part" type="number"/>
+    </p>
+
+    <h2>Ma localisation</h2>
+
+    <div style="background: #ccc; width:400px; height: 100px;">&nbsp;</div>
+
+    <h3>Orientation(s) de mes fenêtres</h3>
+
+    <input type="checkbox" name="vehicle" value="N">Nord<br />
+    <input type="checkbox" name="vehicle" value="NO">Nord-Ouest<br />
+    <input type="checkbox" name="vehicle" value="O">Ouest<br />
+    <input type="checkbox" name="vehicle" value="SO">Sud-Ouest<br />
+    <input type="checkbox" name="vehicle" value="S">Sud<br>
+    <input type="checkbox" name="vehicle" value="SE">Sud-Est<br>
+    <input type="checkbox" name="vehicle" value="E">Est<br>
+    <input type="checkbox" name="vehicle" value="NE">Nord-Est<br>
+
+    <p>
+      <label for="floor">Étage</label>
+      <input name="floor" type="number"/>
+    </p>
+
+    <input type="submit" value="Envoyer">
+  </form>
+</body>
+</html>
