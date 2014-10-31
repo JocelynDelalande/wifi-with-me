@@ -61,4 +61,16 @@ $( document ).ready(function() {
     }); // Search sub form
 
 
+    // Contrib share dynamic form
+    $('#contrib-type-share').hide();
+    $('[name="contrib-type"').change(function(e){
+        console.log($(this).val());
+        if ($(this).val() == 'share') {
+            $('#contrib-type-share').slideDown();
+        }
+        else {
+            $('#contrib-type-share').slideUp();
+        }
+    });
+
 });
