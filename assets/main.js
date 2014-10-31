@@ -63,6 +63,15 @@ $( document ).ready(function() {
 
     }); // Search sub form
 
+    // Enter key on search form does not submit form,
+    // Trigger search button instead.
+    $('#search').keypress(function(e) {
+        if (e.which == '13') {
+            e.preventDefault();
+            $('#search-btn').trigger('click');
+        }
+    });
+
 
     // Contrib share dynamic form
     if ($('[name="contrib-type"]:checked').val() == 'share') { $('#contrib-type-share').show(); }
