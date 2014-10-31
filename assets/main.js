@@ -62,8 +62,9 @@ $( document ).ready(function() {
 
 
     // Contrib share dynamic form
-    if ($('[name="contrib-type"]').val() == 'share') { $('#contrib-type-share').show(); }
+    if ($('[name="contrib-type"]:checked').val() == 'share') { $('#contrib-type-share').show(); }
     else { $('#contrib-type-share').hide(); }
+    // On change
     $('[name="contrib-type"]').change(function(e){
         if ($(this).val() == 'share') { $('#contrib-type-share').slideDown(); }
         else { $('#contrib-type-share').slideUp(); }
