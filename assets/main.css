@@ -1,7 +1,16 @@
+
 #map {
     min-height: 300px;
 }
 
 #search-results {
     margin-top: 1em;
+}
+
+body > footer {
+    /* See jumbotron */
+    margin-top: 30px;
+    padding: 48px 0;
+    background-color: #eee;
+    text-align: center;
 }
