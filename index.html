@@ -48,12 +48,14 @@ pourraient-être intéressantes.
 
   <section role="main" class="container">
   <form role="form">
+
+    <h2>Contact</h2>
+
     <div class="form-group">
     <label for="name">Nom / Pseudo</label>
     <input name="name" id="name" type="text" class="form-control"/>
     </div>
 
-    <h2>Moyen de contact</h2>
     <p class="help-block">
 Un moyen de contact au moins est nécessaire
     </p>
@@ -131,7 +133,10 @@ Un moyen de contact au moins est nécessaire
       </div>
     </div>
 
-    <label for="orientation" />Orientation(s) de mes fenêtres:</label>
+    <p class="help-block">Les antennes peuvent être positionées soit sur le toit soit aux fenêtres</p>
+
+    <div class="form-group">
+    <label for="orientation" />Orientation(s) de mes fenêtres</label><br />
     <label class="checkbox-inline">
       <input type="checkbox" name="orientation" value="N">Nord
     </label>
@@ -156,8 +161,13 @@ Un moyen de contact au moins est nécessaire
     <label class="checkbox-inline">
       <input type="checkbox" name="orientation" value="NE" class="checkbox-inline">Nord-Est<br>
     </label>
+    </div>
 
-    <p class="help-block">Les antennes peuvent être positionées soit sur le toit soit aux fenêtres</p>
+    <div class="form-group">
+        <label for="roof">Je peux accéder à mon toît
+          <input name="roof" type="checkbox" />
+        </label>
+    </div>
 
     <p>
       <label for="floor">Étage</label>
