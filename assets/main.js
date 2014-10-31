@@ -27,6 +27,7 @@ $( document ).ready(function() {
     // Search sub form
     $('#search-btn').click(function(e){
         e.preventDefault();
+        var btn = $(this).button('loading');
 
         // Geocoding
         var searchString = $('#search').val();
@@ -57,6 +58,7 @@ $( document ).ready(function() {
                 $('#modal').modal('hide');
             });
 
+            btn.button('reset');
         }); // getJSON
 
     }); // Search sub form
