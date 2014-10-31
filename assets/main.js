@@ -44,7 +44,7 @@ $( document ).ready(function() {
                 // $('<p>Resultats</p>').appendTo('#search-results');
                 $('<ul/>').addClass("list-group").html(items.join('')).appendTo('#search-results');
             } else {
-                $('<p>', { html: "No results found" }).appendTo('#search-results');
+                $('<p>', { html: "Aucun résultat" }).appendTo('#search-results');
             }
 
             // Bind click on results and update coordinates
