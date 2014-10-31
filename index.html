@@ -49,7 +49,7 @@ pourraient-être intéressantes.
   <form role="form">
     <div class="form-group">
     <label for="name">Nom / Pseudo</label>
-    <input name="name" type="text" class="form-control"/>
+    <input name="name" id="name" type="text" class="form-control"/>
     </div>
 
     <h2>Moyen de contact</h2>
@@ -59,11 +59,11 @@ Un moyen de contact au moins est nécessaire
     <p>
       <div class="form-group">
         <label for="email">Email</label>
-        <input name="email" type="email" class="form-control">
+        <input name="email" id="email" type="email" class="form-control">
       </div>
       <div class="form-group">
-        <label for="email">Téléphone</label>
-        <input name="email" type="tel" class="form-control"/>
+        <label for="phone">Téléphone</label>
+        <input name="phone" id="phone" type="tel" class="form-control"/>
       </div>
     </p>
 
@@ -101,11 +101,11 @@ Un moyen de contact au moins est nécessaire
     </p>
     <p>
       <label for="bandwidth">Débit total (Mbps)</label>
-      <input name="bandwidth" type="number" class="form-control"/>
+      <input name="bandwidth" id="bandwidth" type="number" class="form-control"/>
     </p>
     <p>
       <label for="share-part">Je souhaite partager (au max.) (Mbps)</label>
-      <input name="share-part" type="number" class="form-control"/>
+      <input name="share-part" id="share-part" type="number" class="form-control"/>
     </p>
 
     <h2>Ma localisation</h2>
@@ -161,7 +161,7 @@ Un moyen de contact au moins est nécessaire
 
     <p>
       <label for="floor">Étage</label>
-      <input name="floor" type="number" class="form-control" placeholder="Indiquer  « 0 » pour le Rez-de-chaussée"/>
+      <input name="floor" id="floor" type="number" class="form-control" placeholder="Indiquer  « 0 » pour le Rez-de-chaussée"/>
     </p>
 
     <input type="submit" value="Envoyer">
