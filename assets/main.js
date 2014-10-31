@@ -39,21 +39,22 @@ $( document ).ready(function() {
                 );
             });
 
-            $('#search-results').empty();
+            $('#modal .modal-body').empty();
             if (items.length != 0) {
-                // $('<p>Resultats</p>').appendTo('#search-results');
-                $('<ul/>').addClass("list-group").html(items.join('')).appendTo('#search-results');
+                $('<ul/>').addClass("list-group").html(items.join('')).appendTo('#modal .modal-body');
             } else {
-                $('<p>', { html: "Aucun résultat" }).appendTo('#search-results');
+                $('<p/>', { html: "Aucun résultat" }).appendTo('#modal .modal-body');
             }
+            $('#modal').modal('show');
 
             // Bind click on results and update coordinates
-            $('#search-results a').on('click', function(e){
+            $('#modal .modal-body a').on('click', function(e){
                 e.preventDefault();
 
                 marker.setLatLng({lat:$(this).data('lat'), lng:$(this).data('lng')}).update();
                 map.panTo({lat:$(this).data('lat'), lng:$(this).data('lng')});
                 ondragend();
+                $('#modal').modal('hide');
             });
 
         }); // getJSON
