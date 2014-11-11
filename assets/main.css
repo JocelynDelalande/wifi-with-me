@@ -14,3 +14,7 @@ body > footer {
     background-color: #eee;
     text-align: center;
 }
+
+ul {
+    list-style-type: none;
+}
