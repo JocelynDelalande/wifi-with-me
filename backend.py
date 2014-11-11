@@ -3,53 +3,67 @@
 import os
 from os.path import join, dirname
 
-from bottle import route, run, static_file, request
+from bottle import route, run, static_file, request, template, FormsDict
 
-form_names = {
-    'name'        : 'Nom/Pseudo',
-    'contrib-type': 'Type de participation',
-    'latitude'    : 'Localisation',
-    'longitude'   : 'Localisation',
-    'phone'       : 'Téléphone',
-    'email'       : 'Email',
-    'access-type' : 'Type de connexion',
-    'bandwidth'   : 'Bande passante',
-    'share-part'  : 'Débit partagé',
-}
+ORIENTATIONS = (
+    ('N', 'Nord'),
+    ('NO', 'Nord-Ouest'),
+    ('O', 'Ouest'),
+    ('SO', 'Sud-Ouest'),
+    ('S', 'Sud'),
+    ('SE', 'Sud-Est'),
+    ('E', 'Est'),
+    ('NE', 'Nord-Est'),
+)
 
 @route('/wifi-form')
 def show_wifi_form():
-    return open('index.html').read()
+    return template('wifi-form', errors=None, data = FormsDict(),
+                    orientations=ORIENTATIONS)
 
 @route('/wifi-form', method='POST')
 def submit_wifi_form():
     required = ('name', 'contrib-type',
-                'latitude', 'longitude', 'orientation')
+                'latitude', 'longitude')
     required_or = (('email', 'phone'),)
     required_if = (
         ('contrib-type', 'share',('access-type', 'bandwidth',
                                     'share-part')),
     )
 
-    errors = []
+    field_names = {
+        'name'        : 'Nom/Pseudo',
+        'contrib-type': 'Type de participation',
+        'latitude'    : 'Localisation',
+        'longitude'   : 'Localisation',
+        'phone'       : 'Téléphone',
+        'email'       : 'Email',
+        'access-type' : 'Type de connexion',
+        'bandwidth'   : 'Bande passante',
+        'share-part'  : 'Débit partagé',
+    }
 
+    errors = []
     for name in required:
         if (not request.forms.get(name)):
-            errors.append((name, 'Ce champ est requis'))
+            errors.append((field_names[name], 'ce champ est requis'))
 
     for name_list in required_or:
         filleds = [True for name in name_list if request.forms.get(name)]
         if len(filleds) <= 0:
-            errors.append((name_list,
-                           'Au moins un des de ces champs est requis'))
+            errors.append((
+                    ' ou '.join([field_names[i] for i in name_list]),
+                    'au moins un des de ces champs est requis'))
 
     for key, value, fields  in required_if:
         if request.forms.get('key') == value:
             for name in fields:
                 if not request.forms.get(name):
-                    errors.append((name, 'Ce champ est requis'))
+                    errors.append(
+                        (field_names[name], 'ce champ est requis'))
     if errors:
-        return str(errors)
+        return template('wifi-form', errors=errors, data=request.forms,
+                        orientations=ORIENTATIONS)
     else:
         return 'OK'
 
