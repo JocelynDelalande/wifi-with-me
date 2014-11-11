@@ -177,6 +177,43 @@ Un moyen de contact au moins est nécessaire
     <h2>Remarque/commentaire</h2>
     <textarea name="comment" class="form-control"></textarea>
 
+    <h2>Mes données</h2>
+
+    <p class="help-block">
+Les données collectées dans ce formulaire sont, par défaut, accessibles
+seulement au bureau de FAIMaison.<br />
+
+Certaines données, précisées ci-dessous, et anonymisées peuvent-être exposées
+sur une carte publique.
+    </p>
+
+    <div class="form-group">
+    <label for="privacy" />
+J'autorise qu'apparaissent sur la carte publique :
+    </label><br />
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="privacy" checked=1 value="coordinates">
+        Mes coordonnées GPS
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="privacy" checked=1 value="place_details">
+        Mon étage et mes orientations
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="privacy" value="login"> Mon nom/pseudo
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="privacy" value="comment"> Mon commentaire
+      </label>
+    </div>
     <input type="submit" value="Envoyer" class="btn btn-primary btn-lg">
   </form>
   </section>
