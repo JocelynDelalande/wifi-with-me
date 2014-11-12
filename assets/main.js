@@ -20,12 +20,12 @@ $( document ).ready(function() {
     }).addTo(map);
 
     // every time the marker is dragged, update the coordinates container
-    marker.on('dragend', ondragend);
+    marker.on('dragend', mapUpdateCoords);
 
     // Set the initial marker coordinate on load.
-    ondragend();
+    mapUpdateCoords();
 
-    function ondragend() {
+    function mapUpdateCoords() {
         var m = marker.getLatLng();
         $('#latitude').val(m.lat);
         $('#longitude').val(m.lng);
