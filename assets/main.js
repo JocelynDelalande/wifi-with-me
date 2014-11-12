@@ -1,14 +1,21 @@
 $( document ).ready(function() {
 
+    // Defaults
+    defaults = {
+        lat: ($('#latitude').val()) ? $('#latitude').val() : 47.218371,
+        lng: ($('#longitude').val()) ? $('#longitude').val() : -1.553621,
+        zoom: 13,
+    }
+
     // Create map
-    var map = L.map('map').setView([47.218371,-1.553621], 13);
+    var map = L.map('map').setView([defaults.lat,defaults.lng], defaults.zoom);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18
     }).addTo(map);
 
     // Create marker
-    var marker = L.marker([47.218371,-1.553621], {
+    var marker = L.marker([defaults.lat,defaults.lng], {
         draggable: true
     }).addTo(map);
 
