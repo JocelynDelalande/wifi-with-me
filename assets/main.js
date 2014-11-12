@@ -27,8 +27,8 @@ $( document ).ready(function() {
 
     function ondragend() {
         var m = marker.getLatLng();
-        $('latitude').value = m.lat;
-        $('longitude').value = m.lng;
+        $('#latitude').val(m.lat);
+        $('#longitude').val(m.lng);
     }
 
     // Search sub form
