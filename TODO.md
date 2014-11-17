@@ -6,7 +6,8 @@ Bugs
 Features
 ========
 
-- saving in db
+- Redirection and thanks message
+- pass the DB name as enviornment
 
 Cosmetics/Optional
 ==================

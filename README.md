@@ -25,3 +25,15 @@ To run in debug mode (auto-reload)
 
 Bottle will reload on source change, but not on template change if you're using
 an old version of bottle.
+
+Create the DataBase
+===================
+
+    $ python backend.py createdb
+
+Drop the database
+=================
+
+    $ rm db.sqlite3
+
+What else ?
