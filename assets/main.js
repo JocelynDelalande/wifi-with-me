@@ -61,7 +61,7 @@ $( document ).ready(function() {
 
                 marker.setLatLng({lat:$(this).data('lat'), lng:$(this).data('lng')}).update();
                 map.panTo({lat:$(this).data('lat'), lng:$(this).data('lng')});
-                ondragend();
+                mapUpdateCoords();
                 $('#modal').modal('hide');
             });
 
