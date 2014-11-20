@@ -3,9 +3,10 @@
 import os
 import sys
 import sqlite3
+import urlparse
 from os.path import join, dirname
 
-from bottle import route, run, static_file, request, template, FormsDict
+from bottle import route, run, static_file, request, template, FormsDict, redirect
 
 ORIENTATIONS = (
     ('N', 'Nord'),
@@ -127,7 +128,12 @@ def submit_wifi_form():
                 'privacy_comment'      : 'comment' in d.getall('privacy'),
         })
         DB.commit()
+        return redirect(urlparse.urljoin(request.path,'thanks'))
 
+@route('/thanks')
+def wifi_form_thanks():
+    return static_file('thanks.html',
+                       root=join(dirname(__file__), 'views/'))
 
 @route('/assets/<filename:path>')
 def send_asset(filename):
