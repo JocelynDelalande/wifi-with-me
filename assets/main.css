@@ -15,6 +15,13 @@ body > footer {
     text-align: center;
 }
 
-ul {
-    list-style-type: none;
+/** Form errors **/
+#errors {
+    padding: 1em;
+    border: 1px solid #a94442;
+    border-radius: 4px;
+}
+#errors ul {
+    margin: 0 0 0 1em;
+    padding: 0;
 }

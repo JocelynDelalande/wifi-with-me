@@ -30,11 +30,13 @@
   Veuillez corriger les <span class="label label-danger">erreurs</span>
   suivantes :
 </p>
-<ul class="bg-warning">
+<div id="errors" class="bg-danger">
+<ul >
 %for field, err in set(errors):
   <li><strong>{{field}}</strong> : {{err}}</li>
 %end
 </ul>
+</div>
 
 %else:
     <p>
@@ -63,7 +65,6 @@ pourraient-être intéressantes.
   <form role="form" method="post">
 
     <h2>Contact</h2>
-
     <div class="form-group">
     <label for="name">Nom / Pseudo</label>
     <input name="name" value="{{data.get('name', '')}}"
