@@ -4,6 +4,8 @@ import os
 import sys
 import sqlite3
 import urlparse
+import datetime
+from email import utils
 from os.path import join, dirname
 
 from bottle import route, run, static_file, request, template, FormsDict, redirect
@@ -42,6 +44,7 @@ DB_COLS = (
 ('privacy_coordinates', 'INTEGER'),
 ('privacy_place_details', 'INTEGER'),
 ('privacy_comment', 'INTEGER'),
+('date', 'TEXT'),
 )
 
 @route('/wifi-form')
@@ -54,13 +57,15 @@ def create_tabble(db, name, columns):
     db.execute('CREATE TABLE {} ({})'.format(name, col_defs))
 
 def save_to_db(db, dic):
+    tosave = dic.copy()
+    tosave['date'] = utils.formatdate()
     return db.execute("""
 INSERT INTO {}
 (name, contrib_type, latitude, longitude, phone, email, access_type, bandwidth, share_part, floor, orientations, comment,
-privacy_name, privacy_email, privacy_place_details, privacy_coordinates, privacy_comment)
+privacy_name, privacy_email, privacy_place_details, privacy_coordinates, privacy_comment, date)
 VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :bandwidth, :share_part, :floor, :orientations, :comment,
-        :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment)
-""".format(TABLE_NAME), dic)
+        :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment, :date)
+""".format(TABLE_NAME), tosave)
 
 @route('/wifi-form', method='POST')
 def submit_wifi_form():
