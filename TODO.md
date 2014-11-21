@@ -5,6 +5,7 @@ Features
 ========
 
 - pass the DB name as enviornment
+- Captcha or Honeypot
 
 Cosmetics/Optional
 ==================
