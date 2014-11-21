@@ -47,6 +47,10 @@ DB_COLS = (
 ('date', 'TEXT'),
 )
 
+@route('/')
+def home():
+     redirect("/wifi-form")
+
 @route('/wifi-form')
 def show_wifi_form():
     return template('wifi-form', errors=None, data = FormsDict(),
