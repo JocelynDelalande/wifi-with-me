@@ -5,10 +5,12 @@ import sys
 import sqlite3
 import urlparse
 import datetime
+import json
 from email import utils
 from os.path import join, dirname
 
-from bottle import route, run, static_file, request, template, FormsDict, redirect
+
+from bottle import route, run, static_file, request, template, FormsDict, redirect, response
 
 ORIENTATIONS = (
     ('N', 'Nord'),
@@ -148,12 +150,116 @@ def wifi_form_thanks():
 def send_asset(filename):
     return static_file(filename, root=join(dirname(__file__), 'assets'))
 
+
+
+"""
+Results Map
+"""
+
+@route('/map')
+def public_map():
+    geojsonPath = '/public.json'
+    return template('map', geojson=geojsonPath)
+
+@route('/public.json')
+def public_geojson():
+    return static_file('public.json', root=join(dirname(__file__), 'json/'))
+
+
+
+"""
+GeoJSON Functions
+"""
+
+# Save feature collection to a json file
+def save_featurecollection_json(id, features):
+    with open('json/' + id + '.json', 'w') as outfile:
+        json.dump({
+            "type" : "FeatureCollection",
+            "features" : features,
+            "id" : id,
+        }, outfile)
+
+# Build GeoJSON files from DB
+def build_geojson():
+
+    # Read from DB
+    DB.row_factory = sqlite3.Row
+    cur = DB.execute("""
+        SELECT * FROM {} ORDER BY id DESC
+        """.format(TABLE_NAME))
+
+    public_features = []
+    private_features = []
+
+    # Loop through results
+    rows = cur.fetchall()
+    for row in rows:
+
+        # Private JSON file
+        private_features.append({
+            "type" : "Feature",
+            "geometry" : {
+                "type": "Point",
+                 "coordinates": [row['longitude'], row['latitude']],
+            },
+             "id" : row['id'],
+             "properties": {
+                "name" : row['name'],
+                "place" : {
+                    'floor' : row['floor'],
+                    'orientations' : row['orientations'].split(','),
+                },
+                "comment" : row['comment']
+             }
+        })
+
+        # Bypass non-public points
+        if not row['privacy_coordinates']:
+            continue
+
+        # Public JSON file
+        public_feature = {
+            "type" : "Feature",
+            "geometry" : {
+                "type": "Point",
+                 "coordinates": [row['longitude'], row['latitude']],
+            },
+             "id" : row['id'],
+             "properties": {}
+        }
+
+        # Add optionnal variables
+        if not row['privacy_name']:
+            public_feature['properties']['name'] = row['name']
+
+        if not row['privacy_comment']:
+            public_feature['properties']['comment'] = row['comment']
+
+        if not row['privacy_place_details']:
+            public_feature['properties']['place'] = {
+                'floor' : row['floor'],
+                'orientations' : row['orientations'].split(','),
+                # 'roof' : row['roof'],
+            }
+
+        # Add to public features list
+        public_features.append(public_feature)
+
+    # Build GeoJSON Feature Collection
+    save_featurecollection_json('private', private_features)
+    save_featurecollection_json('public', public_features)
+
+
+
 DEBUG = bool(os.environ.get('DEBUG', False))
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         if sys.argv[1] == 'createdb':
             create_tabble(DB, TABLE_NAME, DB_COLS)
+        if sys.argv[1] == 'buildgeojson':
+            build_geojson()
     else:
         run(host='localhost', port=8080, reloader=DEBUG)
         DB.close()

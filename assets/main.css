@@ -1,4 +1,9 @@
 
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
 #map {
     min-height: 300px;
 }
@@ -24,4 +29,21 @@ body > footer {
 #errors ul {
     margin: 0 0 0 1em;
     padding: 0;
+}
+
+/** Results **/
+#map.results {
+    min-height: 500px;
+    margin-bottom: 1em;
+}
+
+.results .leaflet-popup-content {
+    margin: 1em;
+}
+.results .leaflet-popup-content h2 {
+    font-size: 20px;
+}
+.results .leaflet-popup-content ul {
+    margin: 0.5em 0;
+    padding-left: 1.5em;
 }

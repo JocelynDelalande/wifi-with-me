@@ -31,6 +31,11 @@ Create the DataBase
 
     $ python backend.py createdb
 
+Build GeoJSON files
+===================
+
+    $ python backend.py buildgeojson
+
 Drop the database
 =================
 
