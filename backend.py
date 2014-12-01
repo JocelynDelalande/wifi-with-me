@@ -149,13 +149,16 @@ def submit_wifi_form():
 
 @route('/thanks')
 def wifi_form_thanks():
-    return static_file('thanks.html',
-                       root=join(dirname(__file__), 'views/'))
+    return template('thanks')
 
 @route('/assets/<filename:path>')
 def send_asset(filename):
     return static_file(filename, root=join(dirname(__file__), 'assets'))
 
+
+@route('/legal')
+def legal():
+    return template('legal')
 
 
 """

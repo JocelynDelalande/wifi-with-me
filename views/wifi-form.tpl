@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>FAIMaison − contribution à l'expérimentation wifi</title>
+% rebase('base.tpl', page='form')
+  <script src="assets/form.js" type="text/javascript"></script>
 
-    <!-- jQuery -->
-    <script src="assets/jquery/jquery-1.11.0.min.js" type="text/javascript"></script>
-
-    <!-- Bootstrap -->
-    <script src="assets/bootstrap/js/bootstrap.js"></script>
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Leaflet -->
-    <link rel="stylesheet" type="text/css" media="all" href="assets/leaflet/leaflet.css" />
-    <script src="assets/leaflet/leaflet.js" type="text/javascript"></script>
-
-    <!-- Custom -->
-    <link rel="stylesheet" type="text/css" media="all" href="assets/main.css" />
-    <script src="assets/main.js" type="text/javascript"></script>
-
-  </head>
-<body>
   <header class="jumbotron">
     <div class="container">
-    <h1>Réseau wifi expérimental</h1>
 %if errors:
 
 <p>
@@ -244,9 +223,6 @@ J'autorise qu'apparaissent sur la carte publique :
   </form>
   </section>
 
-  <footer>
-    <p>Vos données personnelles sont en lieu sûr.</p>
-  </footer>
 
 <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Resultats" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -260,6 +236,3 @@ J'autorise qu'apparaissent sur la carte publique :
     </div>
   </div>
 </div>
-
-</body>
-</html>
