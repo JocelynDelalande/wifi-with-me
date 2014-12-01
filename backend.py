@@ -141,6 +141,10 @@ def submit_wifi_form():
                 'privacy_comment'      : 'comment' in d.getall('privacy'),
         })
         DB.commit()
+
+        # Rebuild GeoJSON
+        build_geojson()
+
         return redirect(urlparse.urljoin(request.path,'thanks'))
 
 @route('/thanks')
