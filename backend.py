@@ -40,6 +40,7 @@ DB_COLS = (
 ('share_part', 'REAL'),
 ('floor', 'INTEGER'),
 ('orientations', 'TEXT'),
+('roof', 'INTEGER'),
 ('comment', 'TEXT'),
 ('privacy_name', 'INTEGER'),
 ('privacy_email', 'INTEGER'),
@@ -67,9 +68,9 @@ def save_to_db(db, dic):
     tosave['date'] = utils.formatdate()
     return db.execute("""
 INSERT INTO {}
-(name, contrib_type, latitude, longitude, phone, email, access_type, bandwidth, share_part, floor, orientations, comment,
+(name, contrib_type, latitude, longitude, phone, email, access_type, bandwidth, share_part, floor, orientations, roof, comment,
 privacy_name, privacy_email, privacy_place_details, privacy_coordinates, privacy_comment, date)
-VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :bandwidth, :share_part, :floor, :orientations, :comment,
+VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :bandwidth, :share_part, :floor, :orientations, :roof, :comment,
         :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment, :date)
 """.format(TABLE_NAME), tosave)
 
@@ -131,6 +132,7 @@ def submit_wifi_form():
                 'share_part'           : d.get('share-part'),
                 'floor'                : d.get('floor'),
                 'orientations'         : ','.join(d.getall('orientation')),
+                'roof'         : d.get('roof'),
                 'comment'              : d.get('comment'),
                 'privacy_name'         : 'name' in d.getall('privacy'),
                 'privacy_email'        : 'email' in d.getall('privacy'),
@@ -209,6 +211,7 @@ def build_geojson():
                 "place" : {
                     'floor' : row['floor'],
                     'orientations' : row['orientations'].split(','),
+                    'roof' : row['roof'],
                 },
                 "comment" : row['comment']
              }
@@ -240,7 +243,7 @@ def build_geojson():
             public_feature['properties']['place'] = {
                 'floor' : row['floor'],
                 'orientations' : row['orientations'].split(','),
-                # 'roof' : row['roof'],
+                'roof' : row['roof'],
             }
 
         # Add to public features list
