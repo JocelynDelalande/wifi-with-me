@@ -39,6 +39,7 @@ DB_COLS = (
 ('bandwidth', 'REAL'),
 ('share_part', 'REAL'),
 ('floor', 'INTEGER'),
+('floor_total', 'INTEGER'),
 ('orientations', 'TEXT'),
 ('roof', 'INTEGER'),
 ('comment', 'TEXT'),
@@ -68,9 +69,9 @@ def save_to_db(db, dic):
     tosave['date'] = utils.formatdate()
     return db.execute("""
 INSERT INTO {}
-(name, contrib_type, latitude, longitude, phone, email, access_type, bandwidth, share_part, floor, orientations, roof, comment,
+(name, contrib_type, latitude, longitude, phone, email, access_type, bandwidth, share_part, floor, floor_total, orientations, roof, comment,
 privacy_name, privacy_email, privacy_place_details, privacy_coordinates, privacy_comment, date)
-VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :bandwidth, :share_part, :floor, :orientations, :roof, :comment,
+VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :bandwidth, :share_part, :floor, :floor_total, :orientations, :roof, :comment,
         :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment, :date)
 """.format(TABLE_NAME), tosave)
 
@@ -94,6 +95,8 @@ def submit_wifi_form():
         'access-type' : 'Type de connexion',
         'bandwidth'   : 'Bande passante',
         'share-part'  : 'Débit partagé',
+        'floor' : 'Étage',
+        'floor_total' : 'Nombre d\'étages total'
     }
 
     errors = []
@@ -114,6 +117,14 @@ def submit_wifi_form():
                 if not request.forms.get(name):
                     errors.append(
                         (field_names[name], 'ce champ est requis'))
+
+    if request.forms.get('floor') and not request.forms.get('floor_total'):
+        errors.append((field_names['floor_total'], "ce champ est requis"))
+    elif not request.forms.get('floor') and request.forms.get('floor_total'):
+        errors.append((field_names['floor'], "ce champ est requis"))
+    elif request.forms.get('floor') and request.forms.get('floor_total') and (request.forms.get('floor') > request.forms.get('floor_total')):
+        errors.append((field_names['floor'], "Étage supérieur au nombre total"))
+
     if errors:
         return template('wifi-form', errors=errors, data=request.forms,
                         orientations=ORIENTATIONS)
@@ -131,6 +142,7 @@ def submit_wifi_form():
                 'bandwidth'            : d.get('bandwidth'),
                 'share_part'           : d.get('share-part'),
                 'floor'                : d.get('floor'),
+                'floor_total'                : d.get('floor_total'),
                 'orientations'         : ','.join(d.getall('orientation')),
                 'roof'         : d.get('roof'),
                 'comment'              : d.get('comment'),
@@ -214,6 +226,7 @@ def build_geojson():
                 "name" : row['name'],
                 "place" : {
                     'floor' : row['floor'],
+                    'floor_total' : row['floor_total'],
                     'orientations' : row['orientations'].split(','),
                     'roof' : row['roof'],
                 },
@@ -246,6 +259,7 @@ def build_geojson():
         if not row['privacy_place_details']:
             public_feature['properties']['place'] = {
                 'floor' : row['floor'],
+                'floor_total' : row['floor_total'],
                 'orientations' : row['orientations'].split(','),
                 'roof' : row['roof'],
             }

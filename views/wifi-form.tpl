@@ -187,10 +187,13 @@ Un moyen de contact au moins est nécessaire
         </label>
     </div>
 
-    <p>
+    <p class="form-inline">
       <label for="floor">Étage</label>
       <input name="floor" value="{{data.get('floor', '')}}"
-             id="floor" type="number" class="form-control" placeholder="Indiquer  « 0 » pour le Rez-de-chaussée"/>
+             id="floor" type="number" class="form-control" placeholder="«0» pour le RDC"/>
+      <span>/</span>
+      <input name="floor_total" value="{{data.get('floor_total', '')}}"
+             id="floor_total" type="number" class="form-control" placeholder="Nombre d'étages"/>
     </p>
 
     <h2>Remarque/commentaire</h2>
