@@ -89,4 +89,9 @@ $( document ).ready(function() {
         else { $('#contrib-type-share').slideUp(); }
     });
 
+    // select/deselect all checkbox
+    $('#orientation-all').change(function(e){
+        $('input[name="orientation"]').prop('checked', $(e.target).is(':checked') );
+    });
+
 });
