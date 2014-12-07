@@ -149,7 +149,7 @@ def submit_wifi_form():
                 'comment'              : d.get('comment'),
                 'privacy_name'         : 'name' in d.getall('privacy'),
                 'privacy_email'        : 'email' in d.getall('privacy'),
-                'privacy_place_details': 'details' in d.getall('privacy'),
+                'privacy_place_details': 'place_details' in d.getall('privacy'),
                 'privacy_coordinates'  : 'coordinates' in d.getall('privacy'),
                 'privacy_comment'      : 'comment' in d.getall('privacy'),
         })
