@@ -254,13 +254,13 @@ def build_geojson():
         }
 
         # Add optionnal variables
-        if not row['privacy_name']:
+        if row['privacy_name']:
             public_feature['properties']['name'] = row['name']
 
-        if not row['privacy_comment']:
+        if row['privacy_comment']:
             public_feature['properties']['comment'] = row['comment']
 
-        if not row['privacy_place_details']:
+        if row['privacy_place_details']:
             public_feature['properties']['place'] = {
                 'floor' : row['floor'],
                 'floor_total' : row['floor_total'],
