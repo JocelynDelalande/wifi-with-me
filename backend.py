@@ -65,7 +65,8 @@ def create_tabble(db, name, columns):
     db.execute('CREATE TABLE {} ({})'.format(name, col_defs))
 
 def save_to_db(db, dic):
-    tosave = dic.copy()
+    # SQLite is picky about encoding else
+    tosave = {bytes(k):v.decode('utf-8') if isinstance(v,str) else v for k,v in dic.items()}
     tosave['date'] = utils.formatdate()
     return db.execute("""
 INSERT INTO {}
