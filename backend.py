@@ -119,11 +119,14 @@ def submit_wifi_form():
                     errors.append(
                         (field_names[name], 'ce champ est requis'))
 
-    if request.forms.get('floor') and not request.forms.get('floor_total'):
+    floor = request.forms.get('floor')
+    floor_total = request.forms.get('floor_total')
+
+    if floor and not floor_total:
         errors.append((field_names['floor_total'], "ce champ est requis"))
-    elif not request.forms.get('floor') and request.forms.get('floor_total'):
+    elif not floor and floor_total:
         errors.append((field_names['floor'], "ce champ est requis"))
-    elif request.forms.get('floor') and request.forms.get('floor_total') and (request.forms.get('floor') > request.forms.get('floor_total')):
+    elif floor and floor_total and (int(floor) > int(floor_total)):
         errors.append((field_names['floor'], "Étage supérieur au nombre total"))
 
     if errors:
