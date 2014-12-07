@@ -146,10 +146,10 @@ Un moyen de contact au moins est nécessaire
       </div>
     </div>
 
-    <p class="help-block">Les antennes peuvent être positionées soit sur le toit soit aux fenêtres</p>
+    <p class="help-block">Les antennes peuvent être positionées soit sur le toit soit aux fenêtres/balcons/velux.</p>
 
     <div class="form-group">
-    <label for="orientation" />Orientation(s) de mes fenêtres</label>
+    <label for="orientation" />Orientation(s) de mes fenêtres, balcons ou velux</label>
     (<label class="ceckbox-inline"><input type="checkbox" name="orientation-all" id="orientation-all" value="" />Vue à 360°</label>)
     <br>
 %for val, label in orientations:
@@ -169,12 +169,12 @@ Un moyen de contact au moins est nécessaire
     </div>
 
     <p class="form-inline">
-      <label for="floor">Étage</label>
+      <label for="floor">Mon étage</label>
       <input name="floor" value="{{data.get('floor', '')}}"
-             id="floor" type="number" class="form-control" placeholder="«0» pour le RDC"/>
+             id="floor" type="number" class="form-control" placeholder="« 0 » pour le  RDC"/>
       <span>/</span>
       <input name="floor_total" value="{{data.get('floor_total', '')}}"
-             id="floor_total" type="number" class="form-control" placeholder="Nombre d'étages"/>
+             id="floor_total" type="number" class="form-control" placeholder="Nb. d'étages du bâtiment"/>
     </p>
 
     <h2>Remarque/commentaire</h2>
