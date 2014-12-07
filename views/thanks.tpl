@@ -14,8 +14,7 @@ l'association.
 </p>
 
 <p>
-La carte publique sera disponible prochainement à l'adresse
-<a href="https://faimaison.net/carto/">https://faimaison.net/carto/</a>.
+Vous pouvez consulter la <a href="../map">carte publique avec tous les autres contributions</a>.
 </p>
 
 
