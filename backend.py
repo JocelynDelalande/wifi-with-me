@@ -183,7 +183,7 @@ Results Map
 
 @route('/map')
 def public_map():
-    geojsonPath = '/public.json'
+    geojsonPath = 'public.json'
     return template('map', geojson=geojsonPath)
 
 @route('/public.json')
