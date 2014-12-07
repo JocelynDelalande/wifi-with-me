@@ -8,7 +8,7 @@ $( document ).ready(function() {
     }
 
     // Create map
-    var map = L.map('map').setView([defaults.lat,defaults.lng], defaults.zoom);
+    var map = L.map('map', {scrollWheelZoom: false}).setView([defaults.lat,defaults.lng], defaults.zoom);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18
@@ -87,6 +87,11 @@ $( document ).ready(function() {
     $('[name="contrib-type"]').change(function(e){
         if ($(this).val() == 'share') { $('#contrib-type-share').slideDown(); }
         else { $('#contrib-type-share').slideUp(); }
+    });
+
+    // select/deselect all checkbox
+    $('#orientation-all').change(function(e){
+        $('input[name="orientation"]').prop('checked', $(e.target).is(':checked') );
     });
 
 });
