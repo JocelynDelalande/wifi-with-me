@@ -27,7 +27,7 @@
     %if page == 'form':
     <h1>Réseau wifi expérimental</h1>
     %else:
-    <h1><a href="">Réseau wifi expérimental</a></h1>
+    <h1><a href="./">Réseau wifi expérimental</a></h1>
     %end
     </div>
   </header>
@@ -41,7 +41,7 @@
         Vos données personnelles sont en lieu sûr.
         <br>
         <a href="https://faimaison.net" target="_blank">FAImaison.net</a> -
-        <a href="legal">Mentions légales</a>
+        <a href="./legal">Mentions légales</a>
     </p>
   </footer>
 
