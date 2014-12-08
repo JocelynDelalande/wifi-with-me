@@ -10,13 +10,6 @@
     margin-bottom: 30px;
 }
 
-#map {
-    min-height: 300px;
-}
-
-#search-results {
-    margin-top: 1em;
-}
 
 body > footer {
     /* See jumbotron */
@@ -25,6 +18,27 @@ body > footer {
     background-color: #eee;
     text-align: center;
 }
+
+/** Form **/
+#map {
+    min-height: 300px;
+}
+
+#search-results {
+    margin-top: 1em;
+}
+
+form > h2 {
+    border-top: 1px solid #eee;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+form > h2:first-child {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+
 
 /** Form errors **/
 #errors {
