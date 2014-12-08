@@ -50,21 +50,22 @@ pourraient-être intéressantes.
            id="name" type="text" class="form-control"/>
     </div>
 
-    <p class="help-block">
-Un moyen de contact au moins est nécessaire
-    </p>
-    <p>
-      <div class="form-group">
+    <div class="row">
+      <div class="form-group col-md-6">
         <label for="email">Email</label>
         <input name="email" value="{{data.get('email', '')}}"
                id="email" type="email" class="form-control">
+        <p class="help-block">
+          <span class="glyphicon glyphicon-warning-sign"></span>
+          Un moyen de contact au moins est nécessaire
+        </p>
       </div>
-      <div class="form-group">
+      <div class="form-group col-md-6">
         <label for="phone">Téléphone</label>
         <input name="phone" value="{{data.get('phone', '')}}"
                id="phone" type="tel" class="form-control"/>
       </div>
-    </p>
+    </div>
 
     <h2>Je souhaite</h2>
     <p class="radio">
