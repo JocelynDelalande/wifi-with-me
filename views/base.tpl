@@ -33,7 +33,7 @@
   </header>
 
   <section role="main" class="container">
-    {{!base}}
+  %include
   </section>
 
   <footer>

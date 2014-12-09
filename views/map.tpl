@@ -1,4 +1,4 @@
-% rebase('base.tpl', page='map')
+%rebase base page='map'
 
 <!-- <span class="back-link">&larr; <a href="/">Accueil</a></span> -->
 

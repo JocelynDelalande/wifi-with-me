@@ -1,4 +1,4 @@
-% rebase('base.tpl', page='form')
+%rebase base page='form'
   <script src="assets/form.js" type="text/javascript"></script>
 
   <header class="jumbotron">

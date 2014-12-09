@@ -1,4 +1,4 @@
-% rebase('base.tpl', page='thanks')
+%rebase base page='thanks'
 
 <h1>Merci !</h1>
 

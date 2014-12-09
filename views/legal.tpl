@@ -1,4 +1,4 @@
-% rebase('base.tpl', page='legal')
+%rebase base page='legal'
 
 <h1>Mentions légales</h1>
 
