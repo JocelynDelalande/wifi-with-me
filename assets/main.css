@@ -9,7 +9,37 @@
     display: inline-block;
     margin-bottom: 30px;
 }
+html {
+  min-height: 100%;
+}
 
+body {
+  background-image: url("img/background_main.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 35px;
+  position: relative;
+  min-height: 700px;
+  padding-bottom: 200px;
+}
+
+
+body > .jumbotron {
+  background-color: transparent;
+  padding: 2em;
+}
+
+body > section {
+  background-color: #eee;
+  padding-bottom: 2em;
+}
+
+body.form > section {background-color: transparent;}
+
+body.form section header {
+  margin-top: 365px;
+  margin-bottom: 70px;
+  background-color: rgba(250,250,250,0.5);
+}
 
 body > footer {
     /* See jumbotron */
@@ -17,6 +47,9 @@ body > footer {
     padding: 48px 0;
     background-color: #eee;
     text-align: center;
+
+    position: absolute;
+    bottom: 0;left: 0;right: 0;top: auto;
 }
 
 /** Form **/
