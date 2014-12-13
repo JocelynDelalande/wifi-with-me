@@ -155,7 +155,7 @@ pourraient-être intéressantes.
     <br>
 %for val, label in orientations:
     <label class="checkbox-inline">
-      <input type="checkbox" name="orientation" value="{{val}}"
+      <input type="checkbox" class="orientation" name="orientation" value="{{val}}"
              {{'checked' if val in data.getall('orientation') else ''}}/>
       {{label}}
     </label>

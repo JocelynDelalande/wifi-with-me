@@ -93,5 +93,13 @@ $( document ).ready(function() {
     $('#orientation-all').change(function(e){
         $('input[name="orientation"]').prop('checked', $(e.target).is(':checked') );
     });
+    $('.orientation').change(function(e){
+        if (! $(e.target).is(':checked')) {
+            $('input[name="orientation-all"]').prop('checked', false);
+        }
+        if ($('.orientation').filter(':not(:checked)').length == 0) {
+            $('input[name="orientation-all"]').prop('checked', true);
+        }
+    });
 
 });
