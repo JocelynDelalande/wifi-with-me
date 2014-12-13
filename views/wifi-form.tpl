@@ -163,7 +163,7 @@ pourraient-être intéressantes.
     </div>
 
     <div class="form-group">
-        <label for="roof">Je peux accéder à mon toît
+        <label for="roof">Je peux accéder à mon toit
           <input name="roof" {{'checked' if data.get('roof', False) else ''}}
                  type="checkbox"/>
         </label>
