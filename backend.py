@@ -3,7 +3,13 @@
 import os
 import sys
 import sqlite3
-import urlparse
+
+try:
+     import urllib.parse as urlparse
+except ImportError:
+     # Python2
+     import urlparse
+
 import datetime
 import json
 from email import utils
