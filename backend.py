@@ -19,182 +19,180 @@ from os.path import join, dirname
 from bottle import route, run, static_file, request, template, FormsDict, redirect, response
 
 ORIENTATIONS = (
-    ('N', 'Nord'),
-    ('NO', 'Nord-Ouest'),
-    ('O', 'Ouest'),
-    ('SO', 'Sud-Ouest'),
-    ('S', 'Sud'),
-    ('SE', 'Sud-Est'),
-    ('E', 'Est'),
-    ('NE', 'Nord-Est'),
+    (u'N', u'Nord'),
+    (u'NO', u'Nord-Ouest'),
+    (u'O', u'Ouest'),
+    (u'SO', u'Sud-Ouest'),
+    (u'S', u'Sud'),
+    (u'SE', u'Sud-Est'),
+    (u'E', u'Est'),
+    (u'NE', u'Nord-Est'),
 )
 
-TABLE_NAME = 'contribs'
-DB_FILENAME = join(dirname(__file__), 'db.sqlite3')
+TABLE_NAME = u'contribs'
+DB_FILENAME = join(dirname(__file__), u'db.sqlite3')
 DB = sqlite3.connect(DB_FILENAME)
 
 DB_COLS = (
-('id', 'INTEGER PRIMARY KEY'),
-('name', 'TEXT'),
-('contrib_type', 'TEXT'),
-('latitude', 'REAL'),
-('longitude', 'REAL'),
-('phone', 'TEXT'),
-('email', 'TEXT'),
-('access_type', 'TEXT'),
-('bandwidth', 'REAL'),
-('share_part', 'REAL'),
-('floor', 'INTEGER'),
-('floor_total', 'INTEGER'),
-('orientations', 'TEXT'),
-('roof', 'INTEGER'),
-('comment', 'TEXT'),
-('privacy_name', 'INTEGER'),
-('privacy_email', 'INTEGER'),
-('privacy_coordinates', 'INTEGER'),
-('privacy_place_details', 'INTEGER'),
-('privacy_comment', 'INTEGER'),
-('date', 'TEXT'),
+(u'id', u'INTEGER PRIMARY KEY'),
+(u'name', u'TEXT'),
+(u'contrib_type', u'TEXT'),
+(u'latitude', u'REAL'),
+(u'longitude', u'REAL'),
+(u'phone', u'TEXT'),
+(u'email', u'TEXT'),
+(u'access_type', u'TEXT'),
+(u'bandwidth', u'REAL'),
+(u'share_part', u'REAL'),
+(u'floor', u'INTEGER'),
+(u'floor_total', u'INTEGER'),
+(u'orientations', u'TEXT'),
+(u'roof', u'INTEGER'),
+(u'comment', u'TEXT'),
+(u'privacy_name', u'INTEGER'),
+(u'privacy_email', u'INTEGER'),
+(u'privacy_coordinates', u'INTEGER'),
+(u'privacy_place_details', u'INTEGER'),
+(u'privacy_comment', u'INTEGER'),
+(u'date', u'TEXT'),
 )
 
-@route('/')
+@route(u'/')
 def home():
-     redirect("/wifi-form")
+     redirect(u"/wifi-form")
 
-@route('/wifi-form')
+@route(u'/wifi-form')
 def show_wifi_form():
-    return template('wifi-form', errors=None, data = FormsDict(),
+    return template(u'wifi-form', errors=None, data = FormsDict(),
                     orientations=ORIENTATIONS)
 
 def create_tabble(db, name, columns):
-    col_defs = ','.join(['{} {}'.format(*i) for i in columns])
-    db.execute('CREATE TABLE {} ({})'.format(name, col_defs))
+    col_defs = u','.join([u'{} {}'.format(*i) for i in columns])
+    db.execute(u'CREATE TABLE {} ({})'.format(name, col_defs))
 
 def save_to_db(db, dic):
-    # SQLite is picky about encoding else
-    tosave = {bytes(k):v.decode('utf-8') if isinstance(v,str) else v for k,v in dic.items()}
-    tosave['date'] = utils.formatdate()
-    return db.execute("""
+    dic[u'date'] = utils.formatdate()
+    return db.execute(u"""
 INSERT INTO {}
 (name, contrib_type, latitude, longitude, phone, email, access_type, bandwidth, share_part, floor, floor_total, orientations, roof, comment,
 privacy_name, privacy_email, privacy_place_details, privacy_coordinates, privacy_comment, date)
 VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :bandwidth, :share_part, :floor, :floor_total, :orientations, :roof, :comment,
         :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment, :date)
-""".format(TABLE_NAME), tosave)
+""".format(TABLE_NAME), dic)
 
-@route('/wifi-form', method='POST')
+@route(u'/wifi-form', method=u'POST')
 def submit_wifi_form():
-    required = ('name', 'contrib-type',
-                'latitude', 'longitude')
-    required_or = (('email', 'phone'),)
+    required = (u'name', u'contrib-type',
+                u'latitude', u'longitude')
+    required_or = ((u'email', u'phone'),)
     required_if = (
-        ('contrib-type', 'share',('access-type', 'bandwidth',
-                                    'share-part')),
+        (u'contrib-type', u'share',(u'access-type', u'bandwidth',
+                                    u'share-part')),
     )
 
     field_names = {
-        'name'        : 'Nom/Pseudo',
-        'contrib-type': 'Type de participation',
-        'latitude'    : 'Localisation',
-        'longitude'   : 'Localisation',
-        'phone'       : 'Téléphone',
-        'email'       : 'Email',
-        'access-type' : 'Type de connexion',
-        'bandwidth'   : 'Bande passante',
-        'share-part'  : 'Débit partagé',
-        'floor' : 'Étage',
-        'floor_total' : 'Nombre d\'étages total'
+        u'name'        : u'Nom/Pseudo',
+        u'contrib-type': u'Type de participation',
+        u'latitude'    : u'Localisation',
+        u'longitude'   : u'Localisation',
+        u'phone'       : u'Téléphone',
+        u'email'       : u'Email',
+        u'access-type' : u'Type de connexion',
+        u'bandwidth'   : u'Bande passante',
+        u'share-part'  : u'Débit partagé',
+        u'floor' : u'Étage',
+        u'floor_total' : u'Nombre d\'étages total'
     }
 
     errors = []
     for name in required:
-        if (not request.forms.get(name)):
-            errors.append((field_names[name], 'ce champ est requis'))
+        if (not request.forms.getunicode(name)):
+            errors.append((field_names[name], u'ce champ est requis'))
 
     for name_list in required_or:
-        filleds = [True for name in name_list if request.forms.get(name)]
+        filleds = [True for name in name_list if request.forms.getunicode(name)]
         if len(filleds) <= 0:
             errors.append((
-                    ' ou '.join([field_names[i] for i in name_list]),
-                    'au moins un des de ces champs est requis'))
+                    u' ou '.join([field_names[i] for i in name_list]),
+                    u'au moins un des de ces champs est requis'))
 
     for key, value, fields  in required_if:
-        if request.forms.get('key') == value:
+        if request.forms.getunicode(u'key') == value:
             for name in fields:
-                if not request.forms.get(name):
+                if not request.forms.getunicode(name):
                     errors.append(
-                        (field_names[name], 'ce champ est requis'))
+                        (field_names[name], u'ce champ est requis'))
 
-    floor = request.forms.get('floor')
-    floor_total = request.forms.get('floor_total')
+    floor = request.forms.getunicode(u'floor')
+    floor_total = request.forms.getunicode(u'floor_total')
 
     if floor and not floor_total:
-        errors.append((field_names['floor_total'], "ce champ est requis"))
+        errors.append((field_names[u'floor_total'], u"ce champ est requis"))
     elif not floor and floor_total:
-        errors.append((field_names['floor'], "ce champ est requis"))
+        errors.append((field_names[u'floor'], u"ce champ est requis"))
     elif floor and floor_total and (int(floor) > int(floor_total)):
-        errors.append((field_names['floor'], "Étage supérieur au nombre total"))
+        errors.append((field_names[u'floor'], u"Étage supérieur au nombre total"))
 
     if errors:
-        return template('wifi-form', errors=errors, data=request.forms,
+        return template(u'wifi-form', errors=errors, data=request.forms,
                         orientations=ORIENTATIONS)
     else:
         d = request.forms
         save_to_db(DB, {
-                'name'         : d.get('name'),
-                'contrib_type' : d.get('contrib-type'),
-                'latitude'     : d.get('latitude'),
-                'longitude'    : d.get('longitude'),
-                'phone'        : d.get('phone'),
-                'email'        : d.get('email'),
-                'phone'        : d.get('phone'),
-                'access_type'          : d.get('access-type'),
-                'bandwidth'            : d.get('bandwidth'),
-                'share_part'           : d.get('share-part'),
-                'floor'                : d.get('floor'),
-                'floor_total'                : d.get('floor_total'),
-                'orientations'         : ','.join(d.getall('orientation')),
-                'roof'         : d.get('roof'),
-                'comment'              : d.get('comment'),
-                'privacy_name'         : 'name' in d.getall('privacy'),
-                'privacy_email'        : 'email' in d.getall('privacy'),
-                'privacy_place_details': 'place_details' in d.getall('privacy'),
-                'privacy_coordinates'  : 'coordinates' in d.getall('privacy'),
-                'privacy_comment'      : 'comment' in d.getall('privacy'),
+                u'name'         : d.getunicode(u'name'),
+                u'contrib_type' : d.getunicode(u'contrib-type'),
+                u'latitude'     : d.getunicode(u'latitude'),
+                u'longitude'    : d.getunicode(u'longitude'),
+                u'phone'        : d.getunicode(u'phone'),
+                u'email'        : d.getunicode(u'email'),
+                u'phone'        : d.getunicode(u'phone'),
+                u'access_type'          : d.getunicode(u'access-type'),
+                u'bandwidth'            : d.getunicode(u'bandwidth'),
+                u'share_part'           : d.getunicode(u'share-part'),
+                u'floor'                : d.getunicode(u'floor'),
+                u'floor_total'                : d.getunicode(u'floor_total'),
+                u'orientations'         : u','.join(d.getall(u'orientation')),
+                u'roof'         : d.getunicode(u'roof'),
+                u'comment'              : d.getunicode(u'comment'),
+                u'privacy_name'         : u'name' in d.getall(u'privacy'),
+                u'privacy_email'        : u'email' in d.getall(u'privacy'),
+                u'privacy_place_details': u'place_details' in d.getall(u'privacy'),
+                u'privacy_coordinates'  : u'coordinates' in d.getall(u'privacy'),
+                u'privacy_comment'      : u'comment' in d.getall(u'privacy'),
         })
         DB.commit()
 
         # Rebuild GeoJSON
         build_geojson()
 
-        return redirect(urlparse.urljoin(request.path,'thanks'))
+        return redirect(urlparse.urljoin(request.path, u'thanks'))
 
-@route('/thanks')
+@route(u'/thanks')
 def wifi_form_thanks():
-    return template('thanks')
+    return template(u'thanks')
 
-@route('/assets/<filename:path>')
+@route(u'/assets/<filename:path>')
 def send_asset(filename):
-    return static_file(filename, root=join(dirname(__file__), 'assets'))
+    return static_file(filename, root=join(dirname(__file__), u'assets'))
 
 
-@route('/legal')
+@route(u'/legal')
 def legal():
-    return template('legal')
+    return template(u'legal')
 
 
 """
 Results Map
 """
 
-@route('/map')
+@route(u'/map')
 def public_map():
-    geojsonPath = 'public.json'
-    return template('map', geojson=geojsonPath)
+    geojsonPath = u'public.json'
+    return template(u'map', geojson=geojsonPath)
 
-@route('/public.json')
+@route(u'/public.json')
 def public_geojson():
-    return static_file('public.json', root=join(dirname(__file__), 'json/'))
+    return static_file(u'public.json', root=join(dirname(__file__), u'json/'))
 
 
 
@@ -204,11 +202,11 @@ GeoJSON Functions
 
 # Save feature collection to a json file
 def save_featurecollection_json(id, features):
-    with open('json/' + id + '.json', 'w') as outfile:
+    with open(u'json/' + id + u'.json', u'w') as outfile:
         json.dump({
-            "type" : "FeatureCollection",
-            "features" : features,
-            "id" : id,
+            u"type" : u"FeatureCollection",
+            u"features" : features,
+            u"id" : id,
         }, outfile)
 
 # Build GeoJSON files from DB
@@ -216,7 +214,7 @@ def build_geojson():
 
     # Read from DB
     DB.row_factory = sqlite3.Row
-    cur = DB.execute("""
+    cur = DB.execute(u"""
         SELECT * FROM {} ORDER BY id DESC
         """.format(TABLE_NAME))
 
@@ -229,21 +227,21 @@ def build_geojson():
 
         # Private JSON file
         private_features.append({
-            "type" : "Feature",
-            "geometry" : {
-                "type": "Point",
-                 "coordinates": [row['longitude'], row['latitude']],
+            u"type" : u"Feature",
+            u"geometry" : {
+                u"type": u"Point",
+                 u"coordinates": [row['longitude'], row['latitude']],
             },
-             "id" : row['id'],
-             "properties": {
-                "name" : row['name'],
-                "place" : {
-                    'floor' : row['floor'],
-                    'floor_total' : row['floor_total'],
-                    'orientations' : row['orientations'].split(','),
-                    'roof' : row['roof'],
+             u"id" : row['id'],
+             u"properties": {
+                u"name" : row['name'],
+                u"place" : {
+                    u'floor' : row['floor'],
+                    u'floor_total' : row['floor_total'],
+                    u'orientations' : row['orientations'].split(u','),
+                    u'roof' : row['roof'],
                 },
-                "comment" : row['comment']
+                u"comment" : row['comment']
              }
         })
 
@@ -253,47 +251,47 @@ def build_geojson():
 
         # Public JSON file
         public_feature = {
-            "type" : "Feature",
-            "geometry" : {
-                "type": "Point",
-                 "coordinates": [row['longitude'], row['latitude']],
+            u"type" : "Feature",
+            u"geometry" : {
+                u"type": u"Point",
+                u"coordinates": [row['longitude'], row['latitude']],
             },
-             "id" : row['id'],
-             "properties": {}
+             u"id" : row['id'],
+             u"properties": {}
         }
 
         # Add optionnal variables
         if row['privacy_name']:
-            public_feature['properties']['name'] = row['name']
+            public_feature[u'properties'][u'name'] = row['name']
 
         if row['privacy_comment']:
-            public_feature['properties']['comment'] = row['comment']
+            public_feature[u'properties'][u'comment'] = row['comment']
 
         if row['privacy_place_details']:
-            public_feature['properties']['place'] = {
-                'floor' : row['floor'],
-                'floor_total' : row['floor_total'],
-                'orientations' : row['orientations'].split(','),
-                'roof' : row['roof'],
+            public_feature[u'properties'][u'place'] = {
+                u'floor' : row['floor'],
+                u'floor_total' : row['floor_total'],
+                u'orientations' : row['orientations'].split(u','),
+                u'roof' : row['roof'],
             }
 
         # Add to public features list
         public_features.append(public_feature)
 
     # Build GeoJSON Feature Collection
-    save_featurecollection_json('private', private_features)
-    save_featurecollection_json('public', public_features)
+    save_featurecollection_json(u'private', private_features)
+    save_featurecollection_json(u'public', public_features)
 
 
 
-DEBUG = bool(os.environ.get('DEBUG', False))
+DEBUG = bool(os.environ.get(u'DEBUG', False))
 
-if __name__ == '__main__':
+if __name__ == u'__main__':
     if len(sys.argv) > 1:
-        if sys.argv[1] == 'createdb':
+        if sys.argv[1] == u'createdb':
             create_tabble(DB, TABLE_NAME, DB_COLS)
-        if sys.argv[1] == 'buildgeojson':
+        if sys.argv[1] == u'buildgeojson':
             build_geojson()
     else:
-        run(host='localhost', port=8080, reloader=DEBUG)
+        run(host=u'localhost', port=8080, reloader=DEBUG)
         DB.close()
