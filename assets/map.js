@@ -43,9 +43,33 @@ $( document ).ready(function() {
             layer.bindPopup(feature.properties.popupContent);
         }
 
+        function drawSemiCircles(feature, layer) {
+            orientations_to_angle = {
+                'N': 0,
+                'NO': -45,
+                'O': -90,
+                'SO': -135,
+                'S': 180,
+                'SE': 135,
+                'E': 90,
+                'NE': 45
+            };
+            if (feature.properties.place) {
+                feature.properties.place.orientations.map(function(orien) {
+                    // Strangely enough, we need to invert the coordinates.
+                    L.circle([feature.geometry.coordinates[1],
+                              feature.geometry.coordinates[0]], 150)
+                        .setDirection(orientations_to_angle[orien], 45)
+                        .addTo(map);
+                });
+            }
+        }
+
         // Add to map
         var featureLayer = L.geoJson(data, {
-            onEachFeature: buildPopupContent
+            onEachFeature: function(feature, layer) {
+                buildPopupContent(feature, layer);
+                drawSemiCircles(feature, layer); }
         }).addTo(map);
 
         // Auto Zoom

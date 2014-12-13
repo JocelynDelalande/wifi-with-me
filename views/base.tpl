@@ -14,6 +14,8 @@
     <!-- Leaflet -->
     <link rel="stylesheet" type="text/css" media="all" href="assets/leaflet/leaflet.css" />
     <script src="assets/leaflet/leaflet.js" type="text/javascript"></script>
+    <!-- Leaflet-semicircle -->
+    <script src="assets/leaflet-semicircle/semicircle.js" type="text/javascript"></script>
 
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" media="all" href="assets/main.css" />
