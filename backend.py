@@ -23,6 +23,18 @@ ORIENTATIONS = (
     ('NE', 'Nord-Est'),
 )
 
+# Angular sector for each direction, written as (start, stop) in degrees
+ANGLES = {
+     'N':  (-23, 22),
+     'NO': (292, 337),
+     'O':  (247, 292),
+     'SO': (202, 247),
+     'S':  (157, 202),
+     'SE': (112, 157),
+     'E':  (67, 112),
+     'NE': (22, 67)
+}
+
 TABLE_NAME = 'contribs'
 DB_FILENAME = join(dirname(__file__), 'db.sqlite3')
 DB = sqlite3.connect(DB_FILENAME)
@@ -196,6 +208,41 @@ def public_geojson():
 GeoJSON Functions
 """
 
+# Useful for merging angle intervals (orientations)
+def merge_intervals(l, wrap=360):
+    """Merge a list of intervals, assuming the space is cyclic.  The
+    intervals should already by sorted by start value."""
+    if l == []:
+        return []
+    result = list()
+    # Transform the 2-tuple into a 2-list to be able to modify it
+    result.append(list(l[0]))
+    for (start, stop) in l:
+        current = result[-1]
+        if start > current[1]:
+            result.append([start, stop])
+        else:
+            result[-1][1] = max(result[-1][1], stop)
+    if len(result) == 1:
+        return result
+    # Handle the cyclicity by merging the ends if necessary
+    last = result[-1]
+    first = result[0]
+    if first[0] <= last[1] - wrap:
+        result[-1][1] = max(result[-1][1], first[1] + wrap)
+        result.pop(0)
+    return result
+
+def orientations_to_angle(orientations):
+     """Return a list of (start, stop) angles from a list of orientations."""
+     # Hack to make leaflet-semicircle happy (drawing a full circle only
+     # works with (0, 360))
+     if len(orientations) == 8:
+          return [[0, 360]]
+     angles = [ANGLES[orientation] for orientation in orientations]
+     angles.sort(key=lambda (x, y): x)
+     return merge_intervals(angles)
+
 # Save feature collection to a json file
 def save_featurecollection_json(id, features):
     with open('json/' + id + '.json', 'w') as outfile:
@@ -220,7 +267,8 @@ def build_geojson():
     # Loop through results
     rows = cur.fetchall()
     for row in rows:
-
+        orientations = row['orientations'].split(',')
+        angles = orientations_to_angle(orientations)
         # Private JSON file
         private_features.append({
             "type" : "Feature",
@@ -234,7 +282,8 @@ def build_geojson():
                 "place" : {
                     'floor' : row['floor'],
                     'floor_total' : row['floor_total'],
-                    'orientations' : row['orientations'].split(','),
+                    'orientations' : orientations,
+                    'angles' : angles,
                     'roof' : row['roof'],
                 },
                 "comment" : row['comment']
@@ -267,7 +316,8 @@ def build_geojson():
             public_feature['properties']['place'] = {
                 'floor' : row['floor'],
                 'floor_total' : row['floor_total'],
-                'orientations' : row['orientations'].split(','),
+                'orientations' : orientations,
+                'angles' : angles,
                 'roof' : row['roof'],
             }
 

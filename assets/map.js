@@ -44,23 +44,14 @@ $( document ).ready(function() {
         }
 
         function drawSemiCircles(feature, layer) {
-            orientations_to_angle = {
-                'N': 0,
-                'NO': -45,
-                'O': -90,
-                'SO': -135,
-                'S': 180,
-                'SE': 135,
-                'E': 90,
-                'NE': 45
-            };
             if (feature.properties.place) {
-                feature.properties.place.orientations.map(function(orien) {
+                feature.properties.place.angles.map(function(angles) {
                     // Strangely enough, we need to invert the coordinates.
                     L.circle([feature.geometry.coordinates[1],
-                              feature.geometry.coordinates[0]], 150)
-                        .setDirection(orientations_to_angle[orien], 45)
-                        .addTo(map);
+                              feature.geometry.coordinates[0]], 150, {
+                                  startAngle: angles[0],
+                                  stopAngle: angles[1]
+                              }).addTo(map);
                 });
             }
         }
