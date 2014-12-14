@@ -148,7 +148,7 @@ pourraient-être intéressantes.
       <div class="form-group col-sm-6">
         <div class="form-group form-group-lg form-inline">
           <input type="text" name="search"
-                 id="search" placeholder="rue du calvaire, nantes" class="form-control" />
+                 id="search" placeholder="rue de gerland, lyon" class="form-control" />
           <span id="search-btn" class="btn btn-default btn-lg" data-loading-text="...">Recherche</span>
 
           <div id="search-results" class=""></div>

@@ -2,8 +2,8 @@ $( document ).ready(function() {
 
     // Defaults
     defaults = {
-        lat: ($('#latitude').val()) ? $('#latitude').val() : 47.218371,
-        lng: ($('#longitude').val()) ? $('#longitude').val() : -1.553621,
+        lat: ($('#latitude').val()) ? $('#latitude').val() : 45.75384,
+        lng: ($('#longitude').val()) ? $('#longitude').val() : 4.84709,
         zoom: 13,
     }
 
