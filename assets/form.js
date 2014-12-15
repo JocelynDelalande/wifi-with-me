@@ -83,10 +83,14 @@ $( document ).ready(function() {
     // Contrib share dynamic form
     if ($('[name="contrib-type"]:checked').val() == 'share') { $('#contrib-type-share').show(); }
     else { $('#contrib-type-share').hide(); }
+    if ($('[name="contrib-type"]:checked').val() == 'connect') { $('#contrib-type-connect').show(); }
+    else { $('#contrib-type-connect').hide(); }
     // On change
     $('[name="contrib-type"]').change(function(e){
+        $('#contrib-type-share').slideUp();
+        $('#contrib-type-connect').slideUp();
         if ($(this).val() == 'share') { $('#contrib-type-share').slideDown(); }
-        else { $('#contrib-type-share').slideUp(); }
+        if ($(this).val() == 'connect') { $('#contrib-type-connect').slideDown(); }
     });
 
     // select/deselect all checkbox
