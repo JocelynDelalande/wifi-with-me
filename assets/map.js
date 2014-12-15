@@ -32,7 +32,7 @@ $( document ).ready(function() {
                 feature.properties.popupContent += '<ul>';
                 if (feature.properties.place.hasOwnProperty('floor')) feature.properties.popupContent += '<li>Étage: '+feature.properties.place.floor+'</li>';
                 if (feature.properties.place.orientations[0]) feature.properties.popupContent += '<li>Orientation: '+feature.properties.place.orientations.join(', ')+'</li>';
-                if (feature.properties.place.roof) feature.properties.popupContent += '<li>Accès au toît'+'</li>';
+                if (feature.properties.place.roof) feature.properties.popupContent += '<li>Accès au toit'+'</li>';
                 feature.properties.popupContent += '</ul>'
             }
 
@@ -43,9 +43,24 @@ $( document ).ready(function() {
             layer.bindPopup(feature.properties.popupContent);
         }
 
+        function drawSemiCircles(feature, layer) {
+            if (feature.properties.place) {
+                feature.properties.place.angles.map(function(angles) {
+                    // Strangely enough, we need to invert the coordinates.
+                    L.circle([feature.geometry.coordinates[1],
+                              feature.geometry.coordinates[0]], 150, {
+                                  startAngle: angles[0],
+                                  stopAngle: angles[1]
+                              }).addTo(map);
+                });
+            }
+        }
+
         // Add to map
         var featureLayer = L.geoJson(data, {
-            onEachFeature: buildPopupContent
+            onEachFeature: function(feature, layer) {
+                buildPopupContent(feature, layer);
+                drawSemiCircles(feature, layer); }
         }).addTo(map);
 
         // Auto Zoom

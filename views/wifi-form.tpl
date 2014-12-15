@@ -151,11 +151,11 @@ pourraient-être intéressantes.
 
     <div class="form-group">
     <label for="orientation" />Orientation(s) de mes fenêtres, balcons ou velux</label>
-    (<label class="ceckbox-inline"><input type="checkbox" name="orientation-all" id="orientation-all" value="" />Vue à 360°</label>)
+    (<label class="checkbox-inline"><input type="checkbox" name="orientation-all" id="orientation-all" value="" />Vue à 360°</label>)
     <br>
 %for val, label in orientations:
     <label class="checkbox-inline">
-      <input type="checkbox" name="orientation" value="{{val}}"
+      <input type="checkbox" class="orientation" name="orientation" value="{{val}}"
              {{'checked' if val in data.getall('orientation') else ''}}/>
       {{label}}
     </label>
@@ -163,7 +163,7 @@ pourraient-être intéressantes.
     </div>
 
     <div class="form-group">
-        <label for="roof">Je peux accéder à mon toît
+        <label for="roof">Je peux accéder à mon toit
           <input name="roof" {{'checked' if data.get('roof', False) else ''}}
                  type="checkbox"/>
         </label>
