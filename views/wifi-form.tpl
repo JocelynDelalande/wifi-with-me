@@ -112,16 +112,33 @@ pourraient-être intéressantes.
     partagée avec les autres expérimentateurs afin de ne pas pénaliser votre
     confort.
     </p>
-    <p>
-      <label for="bandwidth">Débit total (Mbps)</label>
-      <input name="bandwidth" value="{{data.get('bandwidth', '')}}"
-             id="bandwidth" type="number" min="0" class="form-control"/>
-    </p>
-    <p>
-      <label for="share-part">Je souhaite partager (au max.) (Mbps)</label>
-      <input name="share-part" value="{{data.get('share-part', '')}}"
-             id="share-part" type="number" min="0" class="form-control"/>
-    </p>
+    <div class="row">
+      <div class="form-group col-md-5">
+      <label for="bandwidth-down">Débit total en <u>download</u> (Mbps)</label>
+      <input name="bandwidth-down" value="{{data.get('bandwidth-down', '')}}"
+             id="bandwidth-down" type="number" min="0" class="form-control"/>
+      </div>
+      <div class="form-group col-md-1"></div>
+      <div class="form-group col-md-5">
+      <label for="share-part-down">Je souhaite partager (au max.) en <u>download</u> (Mbps)</label>
+      <input name="share-part-down" value="{{data.get('share-part-down', '')}}"
+             id="share-part-down" type="number" min="0" class="form-control"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-5">
+      <label for="bandwidth-up">Débit total en <u>upload</u> (Mbps)</label>
+      <input name="bandwidth-up" value="{{data.get('bandwidth-up', '')}}"
+             id="bandwidth-up" type="number" min="0" class="form-control"/>
+      </div>
+      <div class="form-group col-md-1"></div>
+      <div class="form-group col-md-5">
+      <label for="share-part-up">Je souhaite partager (au max.) en <u>upload</u> (Mbps)</label>
+      <input name="share-part-up" value="{{data.get('share-part-up', '')}}"
+             id="share-part-up" type="number" min="0" class="form-control"/>
+      </div>
+    </div>
     </div>
 
     <div id="contrib-type-connect">

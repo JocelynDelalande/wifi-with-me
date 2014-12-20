@@ -51,8 +51,10 @@ DB_COLS = (
 ('access_type', 'TEXT'),
 ('connect_local', 'INTEGER'),
 ('connect_internet', 'INTEGER'),
-('bandwidth', 'REAL'),
-('share_part', 'REAL'),
+('bandwidth_down', 'REAL'),
+('bandwidth_up', 'REAL'),
+('share_part_down', 'REAL'),
+('share_part_up', 'REAL'),
 ('floor', 'INTEGER'),
 ('floor_total', 'INTEGER'),
 ('orientations', 'TEXT'),
@@ -97,9 +99,9 @@ def save_to_db(db, dic):
     tosave['date'] = utils.formatdate()
     return db.execute("""
 INSERT INTO {}
-(name, contrib_type, latitude, longitude, phone, email, access_type, connect_local, connect_internet, bandwidth, share_part, floor, floor_total, orientations, roof, comment,
+(name, contrib_type, latitude, longitude, phone, email, access_type, connect_local, connect_internet, bandwidth_down, bandwidth_up, share_part_down, share_part_up, floor, floor_total, orientations, roof, comment,
 privacy_name, privacy_email, privacy_place_details, privacy_coordinates, privacy_comment, date)
-VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :connect_local, :connect_internet, :bandwidth, :share_part, :floor, :floor_total, :orientations, :roof, :comment,
+VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :connect_local, :connect_internet, :bandwidth_down, :bandwidth_up, :share_part_down, :share_part_up, :floor, :floor_total, :orientations, :roof, :comment,
         :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment, :date)
 """.format(TABLE_NAME), tosave)
 
@@ -109,8 +111,8 @@ def submit_wifi_form():
                 'latitude', 'longitude')
     required_or = (('email', 'phone'),)
     required_if = (
-        ('contrib-type', 'share',('access-type', 'bandwidth',
-                                    'share-part')),
+        ('contrib-type', 'share',('access-type', 'bandwidth-down', 'bandwidth-up',
+                                    'share-part-down', 'share-part-up')),
     )
 
     field_names = {
@@ -121,8 +123,10 @@ def submit_wifi_form():
         'phone'       : 'Téléphone',
         'email'       : 'Email',
         'access-type' : 'Type de connexion',
-        'bandwidth'   : 'Bande passante',
-        'share-part'  : 'Débit partagé',
+        'bandwidth-down'   : 'Bande passante descendante (download)',
+        'bandwidth-up'     : 'Bande passante montante (upload)',
+        'share-part-down'  : 'Débit descendant (download) partagé',
+        'share-part-up'    : 'Débit montant (upload) partagé',
         'floor' : 'Étage',
         'floor_total' : 'Nombre d\'étages total'
     }
@@ -180,8 +184,10 @@ def submit_wifi_form():
                 'access_type'          : d.get('access-type'),
                 'connect_local'        : 'local' in d.getall('connect-type'),
                 'connect_internet'     : 'internet' in d.getall('connect-type'),
-                'bandwidth'            : d.get('bandwidth'),
-                'share_part'           : d.get('share-part'),
+                'bandwidth_down'       : d.get('bandwidth-down'),
+                'bandwidth_up'         : d.get('bandwidth-up'),
+                'share_part_down'      : d.get('share-part-down'),
+                'share_part_up'        : d.get('share-part-up'),
                 'floor'                : d.get('floor'),
                 'floor_total'                : d.get('floor_total'),
                 'orientations'         : ','.join(d.getall('orientation')),
