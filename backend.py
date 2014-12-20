@@ -129,7 +129,7 @@ def submit_wifi_form():
                     'au moins un des de ces champs est requis'))
 
     for key, value, fields  in required_if:
-        if request.forms.get('key') == value:
+        if request.forms.get(key) == value:
             for name in fields:
                 if not request.forms.get(name):
                     errors.append(
