@@ -55,6 +55,7 @@ DB_COLS = (
 ('bandwidth_up', 'REAL'),
 ('share_part_down', 'REAL'),
 ('share_part_up', 'REAL'),
+('isp', 'TEXT'),
 ('floor', 'INTEGER'),
 ('floor_total', 'INTEGER'),
 ('orientations', 'TEXT'),
@@ -99,9 +100,9 @@ def save_to_db(db, dic):
     tosave['date'] = utils.formatdate()
     return db.execute("""
 INSERT INTO {}
-(name, contrib_type, latitude, longitude, phone, email, access_type, connect_local, connect_internet, bandwidth_down, bandwidth_up, share_part_down, share_part_up, floor, floor_total, orientations, roof, comment,
+(name, contrib_type, latitude, longitude, phone, email, access_type, connect_local, connect_internet, bandwidth_down, bandwidth_up, share_part_down, share_part_up, isp, floor, floor_total, orientations, roof, comment,
 privacy_name, privacy_email, privacy_place_details, privacy_coordinates, privacy_comment, date)
-VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :connect_local, :connect_internet, :bandwidth_down, :bandwidth_up, :share_part_down, :share_part_up, :floor, :floor_total, :orientations, :roof, :comment,
+VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :connect_local, :connect_internet, :bandwidth_down, :bandwidth_up, :share_part_down, :share_part_up, :isp, :floor, :floor_total, :orientations, :roof, :comment,
         :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment, :date)
 """.format(TABLE_NAME), tosave)
 
@@ -127,6 +128,7 @@ def submit_wifi_form():
         'bandwidth-up'     : 'Bande passante montante (upload)',
         'share-part-down'  : 'Débit descendant (download) partagé',
         'share-part-up'    : 'Débit montant (upload) partagé',
+        'isp'   : "Fournisseur d'accès à Internet",
         'floor' : 'Étage',
         'floor_total' : 'Nombre d\'étages total'
     }
@@ -188,6 +190,7 @@ def submit_wifi_form():
                 'bandwidth_up'         : d.get('bandwidth-up'),
                 'share_part_down'      : d.get('share-part-down'),
                 'share_part_up'        : d.get('share-part-up'),
+                'isp'                  : d.get('isp'),
                 'floor'                : d.get('floor'),
                 'floor_total'                : d.get('floor_total'),
                 'orientations'         : ','.join(d.getall('orientation')),
