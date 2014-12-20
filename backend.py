@@ -53,6 +53,7 @@ DB_COLS = (
 ('connect_internet', 'INTEGER'),
 ('bandwidth', 'REAL'),
 ('share_part', 'REAL'),
+('isp', 'TEXT'),
 ('floor', 'INTEGER'),
 ('floor_total', 'INTEGER'),
 ('orientations', 'TEXT'),
@@ -97,9 +98,9 @@ def save_to_db(db, dic):
     tosave['date'] = utils.formatdate()
     return db.execute("""
 INSERT INTO {}
-(name, contrib_type, latitude, longitude, phone, email, access_type, connect_local, connect_internet, bandwidth, share_part, floor, floor_total, orientations, roof, comment,
+(name, contrib_type, latitude, longitude, phone, email, access_type, connect_local, connect_internet, bandwidth, share_part, isp, floor, floor_total, orientations, roof, comment,
 privacy_name, privacy_email, privacy_place_details, privacy_coordinates, privacy_comment, date)
-VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :connect_local, :connect_internet, :bandwidth, :share_part, :floor, :floor_total, :orientations, :roof, :comment,
+VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_type, :connect_local, :connect_internet, :bandwidth, :share_part, :isp, :floor, :floor_total, :orientations, :roof, :comment,
         :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment, :date)
 """.format(TABLE_NAME), tosave)
 
@@ -123,6 +124,7 @@ def submit_wifi_form():
         'access-type' : 'Type de connexion',
         'bandwidth'   : 'Bande passante',
         'share-part'  : 'Débit partagé',
+        'isp'   : "Fournisseur d'accès à Internet",
         'floor' : 'Étage',
         'floor_total' : 'Nombre d\'étages total'
     }
@@ -182,6 +184,7 @@ def submit_wifi_form():
                 'connect_internet'     : 'internet' in d.getall('connect-type'),
                 'bandwidth'            : d.get('bandwidth'),
                 'share_part'           : d.get('share-part'),
+                'isp'                  : d.get('isp'),
                 'floor'                : d.get('floor'),
                 'floor_total'                : d.get('floor_total'),
                 'orientations'         : ','.join(d.getall('orientation')),
