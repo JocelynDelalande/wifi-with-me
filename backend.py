@@ -240,6 +240,8 @@ def merge_intervals(l, wrap=360):
 
 def orientations_to_angle(orientations):
      """Return a list of (start, stop) angles from a list of orientations."""
+     # Cleanup
+     orientations = [o for o in orientations if o in ANGLES.keys()]
      # Hack to make leaflet-semicircle happy (drawing a full circle only
      # works with (0, 360))
      if len(orientations) == 8:
