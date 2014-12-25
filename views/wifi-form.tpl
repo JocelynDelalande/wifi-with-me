@@ -143,7 +143,7 @@ pourraient-être intéressantes.
 
     <div class="row">
       <div class="col-sm-6">
-        <div id="map"></div>
+        <div id="map" data-json="{{geojson}}"></div>
       </div>
       <div class="form-group col-sm-6">
         <div class="form-group form-group-lg form-inline">
@@ -152,7 +152,13 @@ pourraient-être intéressantes.
           <span id="search-btn" class="btn btn-default btn-lg" data-loading-text="...">Recherche</span>
 
           <div id="search-results" class=""></div>
-          <p class="help-block">Déplacer le marqueur pour pointer précisément le bâtiment au besoin</p>
+          <p class="help-block">Déplacer le marqueur bleu pour pointer précisément le bâtiment au besoin</p>
+          <p class="help-block">
+            Les ronds verts sont ceux renseignés par d'autres utilisateurs, vous
+            pouvez aussi consulter <a href="map" target="_blank">la carte
+            publique plus détaillée</a>.
+          </p>
+
         </div>
         <input name="latitude" value="{{data.get('latitude', '')}}"
                type="hidden" id="latitude" />

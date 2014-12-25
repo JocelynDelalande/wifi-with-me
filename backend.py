@@ -65,6 +65,8 @@ DB_COLS = (
 ('date', 'TEXT'),
 )
 
+GEOJSON_NAME = 'public.json'
+
 @route('/')
 def home():
      redirect("/wifi-form")
@@ -72,7 +74,7 @@ def home():
 @route('/wifi-form')
 def show_wifi_form():
     return template('wifi-form', errors=None, data = FormsDict(),
-                    orientations=ORIENTATIONS)
+                    orientations=ORIENTATIONS, geojson=GEOJSON_NAME)
 
 def create_tabble(db, name, columns):
     col_defs = ','.join(['{} {}'.format(*i) for i in columns])
@@ -145,7 +147,7 @@ def submit_wifi_form():
 
     if errors:
         return template('wifi-form', errors=errors, data=request.forms,
-                        orientations=ORIENTATIONS)
+                        orientations=ORIENTATIONS, geojson=GEOJSON_NAME)
     else:
         d = request.forms
         save_to_db(DB, {
@@ -199,8 +201,7 @@ Results Map
 
 @route('/map')
 def public_map():
-    geojsonPath = 'public.json'
-    return template('map', geojson=geojsonPath)
+    return template('map', geojson=GEOJSON_NAME)
 
 @route('/public.json')
 def public_geojson():
