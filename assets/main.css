@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background-image: url("img/background_main.jpg");
+  background-image: url("img/background_main_489.jpg");
   background-repeat: no-repeat;
   background-position: 50% 35px;
   background-size: 100%;
@@ -101,4 +101,61 @@ form > h2:first-child {
 .results .leaflet-popup-content ul {
     margin: 0.5em 0;
     padding-left: 1.5em;
+}
+
+
+/** Media-queries **
+*
+* Focused on readability (where background and text overlap) and avoiding
+* big vertical empty spaces.
+*/
+@media (min-width: 0px) {
+    h1 {
+        max-width: 500px;
+        background-color: rgba(250, 250, 250, 0.5);
+    }
+    body.form section header {
+        margin-top: 0px
+    }
+    body {
+        background-image: url("img/background_main_767.jpg");
+    }
+}
+
+@media (min-width: 480px) {
+    h1 {
+        max-width: 400px
+    }
+}
+
+@media (min-width: 768px) {
+    h1 {
+        max-width: 500px
+    }
+    body {
+        background-image: url("img/background_main_991.jpg");
+    }
+}
+
+@media (min-width: 992px) {
+    h1 {
+        max-width: 650px;
+    }
+    body.form section header {
+        margin-top: 265px
+    }
+    body {
+        background-image: url("img/background_main.jpg");
+    }
+}
+
+@media (min-width: 1200px) {
+    h1 {
+        max-width: none;
+        background-color: transparent;
+
+    }
+    body.form section header {
+        margin-top: 365px
+    }
 }
