@@ -9,7 +9,7 @@ Les informations recueillies font l’objet d’un traitement informatique.
 <p>
 Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée en
 2004, vous bénéficiez d’un droit d’accès et de rectification aux informations
-qui vous concernent, que vous pouvez exercer en vous adressant à bureaut (at) faimaison.net.
+qui vous concernent, que vous pouvez exercer en vous adressant à bureau (at) faimaison.net.
 </p>
 
 <p>
