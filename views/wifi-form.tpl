@@ -63,7 +63,7 @@ pourraient-être intéressantes.
       <div class="form-group col-md-6">
         <label for="phone">Téléphone</label>
         <input name="phone" value="{{data.get('phone', '')}}"
-               id="phone" type="tel" class="form-control" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"/>
+               id="phone" type="tel" class="form-control"/>
       </div>
     </div>
 
