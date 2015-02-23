@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import cgi
 import os
 import sys
 import sqlite3
@@ -80,9 +81,17 @@ def create_tabble(db, name, columns):
     col_defs = ','.join(['{} {}'.format(*i) for i in columns])
     db.execute('CREATE TABLE {} ({})'.format(name, col_defs))
 
+def escape(s):
+     if not isinstance(s, (bool, float, int)) and (s != None):
+          return cgi.escape(s)
+     else:
+          return s
+
 def save_to_db(db, dic):
     # SQLite is picky about encoding else
-    tosave = {bytes(k):v.decode('utf-8') if isinstance(v,str) else v for k,v in dic.items()}
+    tosave = {bytes(k):escape(v.decode('utf-8')) if isinstance(v,str)
+              else escape(v)
+              for k,v in dic.items()}
     tosave['date'] = utils.formatdate()
     return db.execute("""
 INSERT INTO {}
