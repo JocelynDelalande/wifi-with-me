@@ -1,0 +1,55 @@
+# Role for the wifi-with-me form
+
+- name: Install flask
+  apt: pkg=python-flask state=installed update_cache=yes cache_valid_time=3600
+
+- name: Make install dir
+  file:
+    dest: "{{ wwm_install_dir }}"
+    state: directory
+
+- name: Git clone
+  git:
+    repo: https://github.com/JocelynDelalande/wifi-with-me.git
+    dest: "{{ wwm_install_dir }}"
+  notify: Restart wifiwithme
+
+- name: Unix user
+  user: name="{{ wwm_user }}"
+
+- name: Create db
+  command: "{{ wwm_install_dir }}/backend.py createdb"
+  args:
+    chdir: "{{ wwm_install_dir }}"
+    creates: "{{ wwm_install_dir }}/db.sqlite3"
+
+- name: db ownership
+  file:
+    dest: "{{ wwm_install_dir }}/db.sqlite3"
+    owner: "{{ wwm_user }}"
+    mode: 0600
+
+- name: Install init file
+  template:
+    src: init.j2
+    dest: /etc/init.d/wifiwithme
+    group: root
+    owner: root
+    mode: 0755
+  notify: Restart wifiwithme
+
+- name: Enable wifiwithme
+  service: name=wifiwithme enabled=yes state=started
+
+- name: Put lighttpd proxy rule
+  template:
+    src: lighttpd-80-wifiwithme.conf.j2
+    dest: /etc/lighttpd/conf-available/80-wifiwithme.conf
+  notify: Restart lighttpd
+
+- name: Enable lighttpd proxy rule
+  file:
+    src: /etc/lighttpd/conf-available/80-wifiwithme.conf
+    dest: /etc/lighttpd/conf-enabled/80-wifiwithme.conf
+    state: link
+  notify: Restart lighttpd
