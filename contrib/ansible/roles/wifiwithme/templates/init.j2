@@ -14,6 +14,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 INSTALL_DIR={{ wwm_install_dir }}
 DAEMON=${INSTALL_DIR}/backend.py
+PIDFILE=/var/run/wifiwithme.pid
 NAME=wifi-with-me
 DESC="Wifi with me, formulaire wifi"
 
@@ -21,36 +22,34 @@ test -x $DAEMON || exit 0
 
 RUN_AS_USER={{ wwm_user }}
 
-set -e
-
 case "$1" in
   start)
         echo -n "Starting $DESC: "
         start-stop-daemon -d $INSTALL_DIR -b --start --quiet  \
-                --chuid $RUN_AS_USER --exec $DAEMON -- $DAEMON_OPTS
+                --chuid $RUN_AS_USER --exec $DAEMON \
+                --pidfile $PIDFILE --make-pidfile \
+                -- $DAEMON_OPTS
         echo "$NAME."
         ;;
   stop)
         echo -n "Stopping $DESC: "
-        start-stop-daemon --stop --oknodo --quiet \
-                --exec $DAEMON
+        start-stop-daemon -d $INSTALL_DIR --stop --oknodo \
+                --pidfile $PIDFILE && rm $PIDFILE
         echo "$NAME."
         ;;
   force-reload)
         # check whether $DAEMON is running. If so, restart
         start-stop-daemon --stop --test --quiet \
-                --exec $DAEMON -- $DAEMON_OPTS \
+                --pidfile $PIDFILE \
+                -- $DAEMON_OPTS \
         && $0 restart \
         || exit 0
         ;;
   restart)
-    echo -n "Restarting $DESC: "
-        start-stop-daemon --stop --oknodo --quiet \
-                --exec $DAEMON
-        sleep 1
-        start-stop-daemon -d $INSTALL_DIR -b --start --quiet \
-                --chuid $RUN_AS_USER --exec $DAEMON -- $DAEMON_OPTS
-        echo "$NAME."
+    echo "Restarting $DESC: " \
+        && $0 stop  \
+        && $0 start \
+        || exit 0
         ;;
   *)
         N=/etc/init.d/$NAME
