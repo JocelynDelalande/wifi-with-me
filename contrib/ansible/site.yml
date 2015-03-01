@@ -1,8 +1,0 @@
-- hosts: all
-  vars:
-    wwm_install_dir: /var/lib/wifiwithme
-    wwm_user: wifiwithme
-    wwm_hostname: wifiwithme.localhost
-    wwm_folder: "/"
-  roles:
-    - wifiwithme
