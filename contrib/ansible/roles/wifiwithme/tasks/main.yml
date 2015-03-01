@@ -23,11 +23,11 @@
     chdir: "{{ wwm_install_dir }}"
     creates: "{{ wwm_install_dir }}/db.sqlite3"
 
-- name: db ownership
+- name: Files ownership
   file:
-    dest: "{{ wwm_install_dir }}/db.sqlite3"
+    dest: "{{ wwm_install_dir }}"
     owner: "{{ wwm_user }}"
-    mode: 0600
+    recurse: yes
 
 - name: Install init file
   template:
