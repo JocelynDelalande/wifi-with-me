@@ -53,7 +53,7 @@ case "$1" in
         start-stop-daemon --stop --oknodo --quiet \
                 --exec $DAEMON
         sleep 1
-        start-stop-daemon -b --start --quiet \
+        start-stop-daemon -d $INSTALL_DIR -b --start --quiet \
                 --chuid $RUN_AS_USER --exec $DAEMON -- $DAEMON_OPTS
         echo "$NAME."
         ;;
