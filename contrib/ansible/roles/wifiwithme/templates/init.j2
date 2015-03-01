@@ -1,20 +1,15 @@
 #! /bin/sh
 #
 ### BEGIN INIT INFO
-# Provides:          scanbuttond
+# Provides:          wifi-with-me
 # Required-Start:    $syslog $local_fs $remote_fs
 # Required-Stop:     $syslog $local_fs $remote_fs
-# Should-Start:      dbus avahi
-# Should-Stop:       dbus avahi
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Wifi-with-me form
 # Description:       Get good will from people :)
 #
 ### END INIT INFO
-
-# Alternative init script using foreground option (do not work otherwise
-# with epson perfection 1660)
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 INSTALL_DIR={{ wwm_install_dir }}
