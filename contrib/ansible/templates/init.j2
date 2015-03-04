@@ -1,0 +1,62 @@
+#! /bin/sh
+#
+### BEGIN INIT INFO
+# Provides:          wifi-with-me
+# Required-Start:    $syslog $local_fs $remote_fs
+# Required-Stop:     $syslog $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Wifi-with-me form
+# Description:       Get good will from people :)
+#
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+INSTALL_DIR={{ wwm_install_dir }}
+DAEMON=${INSTALL_DIR}/backend.py
+PIDFILE=/var/run/wifiwithme.pid
+NAME=wifi-with-me
+DESC="Wifi with me, formulaire wifi"
+
+test -x $DAEMON || exit 0
+
+RUN_AS_USER={{ wwm_user }}
+
+case "$1" in
+  start)
+        echo -n "Starting $DESC: "
+        start-stop-daemon -d $INSTALL_DIR -b --start --quiet  \
+                --chuid $RUN_AS_USER --exec $DAEMON \
+                --pidfile $PIDFILE --make-pidfile \
+                -- $DAEMON_OPTS
+        echo "$NAME."
+        ;;
+  stop)
+        echo -n "Stopping $DESC: "
+        start-stop-daemon -d $INSTALL_DIR --stop --oknodo \
+                --pidfile $PIDFILE && rm $PIDFILE
+        echo "$NAME."
+        ;;
+  force-reload)
+        # check whether $DAEMON is running. If so, restart
+        start-stop-daemon --stop --test --quiet \
+                --pidfile $PIDFILE \
+                -- $DAEMON_OPTS \
+        && $0 restart \
+        || exit 0
+        ;;
+  restart)
+    echo "Restarting $DESC: " \
+        && $0 stop  \
+        && $0 start \
+        || exit 0
+        ;;
+  *)
+        N=/etc/init.d/$NAME
+        echo "Usage: $N {start|stop|restart|force-reload}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0
+
