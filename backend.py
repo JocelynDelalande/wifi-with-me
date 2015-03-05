@@ -68,6 +68,8 @@ DB_COLS = (
 
 GEOJSON_NAME = 'public.json'
 
+ANTISPAM_FIELD = 'url'
+
 @route('/')
 def home():
      redirect("/wifi-form")
@@ -126,6 +128,10 @@ def submit_wifi_form():
     }
 
     errors = []
+
+    if request.forms.get(ANTISPAM_FIELD):
+         errors.append(('', "Une erreur s'est produite"))
+
     for name in required:
         if (not request.forms.get(name)):
             errors.append((field_names[name], 'ce champ est requis'))

@@ -246,6 +246,11 @@ J'autorise qu'apparaissent sur la carte publique :
         Mon commentaire
       </label>
     </div>
+    <!-- if you are human, you do not see me: -->
+    <div style="display: none">
+      <input name="url" value="{{data.get('url', '')}}"
+             id="url" class="form-control">
+    </div>
     <input type="submit" value="Envoyer" class="btn btn-primary btn-lg"/>
   </form>
   </section>
