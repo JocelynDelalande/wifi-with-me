@@ -40,10 +40,15 @@
 
   <footer>
     <p>
-        Vos données personnelles sont en lieu sûr.
+        Vos données personnelles sont stockées sur les serveurs de FAImaison et
+	ne seront pas partagées avec d'autres associations, entreprises
+	ou collectivités. Des membres individuels de FAImaison seront toutefois
+	amenés à les consulter et les étudier : ne fournissez pas de données si
+	vous n'avez pas confiance en FAImaison.
         <br>
         <a href="https://www.faimaison.net" target="_blank">FAImaison.net</a> -
-        <a href="./legal">Mentions légales</a>
+        <a href="./legal">Vos droits d'accès et de rectification de vos données
+	personnelles</a>
     </p>
   </footer>
 
