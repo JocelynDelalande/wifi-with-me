@@ -42,7 +42,7 @@
     <p>
         Vos données personnelles sont en lieu sûr.
         <br>
-        <a href="https://faimaison.net" target="_blank">FAImaison.net</a> -
+        <a href="https://www.faimaison.net" target="_blank">FAImaison.net</a> -
         <a href="./legal">Mentions légales</a>
     </p>
   </footer>
