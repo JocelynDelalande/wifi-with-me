@@ -7,7 +7,7 @@
 
   tasks:
     - name: Install flask
-      apt: pkg=python-flask state=installed update_cache=yes cache_valid_time=3600
+      apt: pkg=python-bottle state=installed update_cache=yes cache_valid_time=3600
     - name: Make install dir
       file:
         dest: "{{ wwm_install_dir }}"
