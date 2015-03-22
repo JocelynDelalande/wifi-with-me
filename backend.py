@@ -353,6 +353,8 @@ def build_geojson():
 
 
 DEBUG = bool(os.environ.get('DEBUG', False))
+LISTEN_ADDR= os.environ.get('BIND_ADDR', 'localhost')
+LISTEN_PORT= int(os.environ.get('BIND_PORT', 8080))
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
@@ -361,5 +363,5 @@ if __name__ == '__main__':
         if sys.argv[1] == 'buildgeojson':
             build_geojson()
     else:
-        run(host='localhost', port=8080, reloader=DEBUG)
+        run(host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
         DB.close()

@@ -26,6 +26,13 @@ To run in debug mode (auto-reload)
 Bottle will reload on source change, but not on template change if you're using
 an old version of bottle.
 
+You can specify listening port and address by setting `BIND_PORT` and
+`BIND_ADDR` env vars, ex:
+
+    BIND_ADDR='0.0.0.0' BIND_PORT=8081 ./backend.py
+
+Default is to listen on `127.0.0.0`, port `8080`.
+
 Create the DataBase
 ===================
 
