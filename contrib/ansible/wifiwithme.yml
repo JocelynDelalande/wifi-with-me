@@ -6,7 +6,7 @@
     wwm_folder: "/"
 
   tasks:
-    - name: Install flask
+    - name: Install bottle
       apt: pkg=python-bottle state=installed update_cache=yes cache_valid_time=3600
     - name: Make install dir
       file:
