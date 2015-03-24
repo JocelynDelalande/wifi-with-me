@@ -13,6 +13,7 @@ from os.path import join, dirname
 
 from bottle import route, run, static_file, request, template, FormsDict, redirect, response, Bottle
 
+URL_PREFIX = os.environ.get('URL_PREFIX', '')
 
 ORIENTATIONS = (
     ('N', 'Nord'),
@@ -197,7 +198,7 @@ def submit_wifi_form():
         # Rebuild GeoJSON
         build_geojson()
 
-        return redirect(urlparse.urljoin(request.path,'thanks'))
+        return redirect(urlparse.urljoin(request.path,join(URL_PREFIX,'thanks')))
 
 @app.route('/thanks')
 def wifi_form_thanks():
@@ -358,6 +359,7 @@ def build_geojson():
 DEBUG = bool(os.environ.get('DEBUG', False))
 LISTEN_ADDR= os.environ.get('BIND_ADDR', 'localhost')
 LISTEN_PORT= int(os.environ.get('BIND_PORT', 8080))
+URL_PREFIX = os.environ.get('URL_PREFIX', '').strip('/')
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
@@ -366,5 +368,11 @@ if __name__ == '__main__':
         if sys.argv[1] == 'buildgeojson':
             build_geojson()
     else:
-        run(app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
-        DB.close()
+         if URL_PREFIX:
+              print('Using url prefix "{}"'.format(URL_PREFIX))
+              root_app = Bottle()
+              root_app.mount('/{}/'.format(URL_PREFIX), app)
+              run(root_app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
+         else:
+              run(app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
+         DB.close()

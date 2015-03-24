@@ -33,6 +33,9 @@ You can specify listening port and address by setting `BIND_PORT` and
 
 Default is to listen on `127.0.0.0`, port `8080`.
 
+You can also pass a `URL_PREFIX='/some_folder/'` if you don't want the app to be
+served at the root of the domain.
+
 Create the DataBase
 ===================
 
