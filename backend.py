@@ -74,7 +74,7 @@ ANTISPAM_FIELD = 'url'
 
 app = Bottle()
 
-@app.route(URL_PREFIX+'/')
+@app.route('/')
 def home():
      redirect("/wifi-form")
 
