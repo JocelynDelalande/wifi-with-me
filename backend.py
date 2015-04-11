@@ -76,7 +76,7 @@ app = Bottle()
 
 @app.route('/')
 def home():
-     redirect("/wifi-form")
+     redirect(urlparse.urljoin(request.path,join(URL_PREFIX, 'wifi-form')))
 
 @app.route('/wifi-form')
 def show_wifi_form():
