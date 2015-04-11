@@ -40,11 +40,13 @@
 
   <footer>
     <p>
-        Vos données personnelles sont stockées sur les serveurs de FAImaison et
-	ne seront pas partagées avec d'autres associations, entreprises
-	ou collectivités. Des membres individuels de FAImaison seront toutefois
-	amenés à les consulter et les étudier : ne fournissez pas de données si
-	vous n'avez pas confiance en FAImaison.
+        Vos données personnelles sont stockées sur les serveurs de FAImaison
+	durant <em>un an</em>, sauf demande de votre part. <br />
+
+        Elles ne seront pas partagées avec d'autres associations, entreprises ou
+	collectivités. Des membres individuels de FAImaison seront toutefois amenés
+	à les consulter et les étudier : ne fournissez pas de données si vous n'avez
+	pas confiance en FAImaison.
         <br>
         <a href="https://www.faimaison.net" target="_blank">FAImaison.net</a> -
         <a href="./legal">Vos droits d'accès et de rectification de vos données
