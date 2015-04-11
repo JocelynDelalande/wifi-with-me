@@ -159,6 +159,10 @@ def submit_wifi_form():
         errors.append((field_names['floor'], "ce champ est requis"))
     elif floor and floor_total and (int(floor) > int(floor_total)):
         errors.append((field_names['floor'], "Étage supérieur au nombre total"))
+    if (int(floor) < 0):
+         errors.append((field_names['floor'], "l'étage doit-être positif"))
+    if (int(floor_total) < 0):
+         errors.append((field_names['floor_total'], "le nombre d'étages doit-être positif"))
 
     if errors:
         return template('wifi-form', errors=errors, data=request.forms,
