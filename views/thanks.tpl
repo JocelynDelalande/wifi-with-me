@@ -8,9 +8,7 @@ Votre contribution a bien été enregistrée.
 <p>
 Si vous voulez <strong>rester en
 contact</strong> avec l'association, nous rencontrer ou vous tenir informé, ça
-se passe sur
-<a href="https://www.faimaison.net/pages/contact.html">la page contact</a> de
-l'association.
+se passe sur <a href="http://www.illyse.net/contact">la page contact</a> de l'association.
 </p>
 
 <p>

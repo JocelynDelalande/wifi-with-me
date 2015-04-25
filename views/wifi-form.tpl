@@ -19,22 +19,22 @@
 
 %else:
     <p>
-L'association <a href="http://faimaison.net">FAIMaison</a> expérimente à
-grande échelle (Nantes et environs) la création d'un réseau sans-fil à
-longue portée à des fins, entre autres, de <em>partage</em> et
-<em>fourniture</em> d'<strong>accès à internet</strong>.
+L'association <a href="http://www.illyse.net">Illyse</a> expérimente à
+grande échelle (Lyon, Monts du Lyonnais et alentours) la création d'un réseau sans-fil à
+longue portée pour permettre, entre autres, le <em>partage</em> et
+la <em>fourniture</em> d'<strong>accès à Internet</strong>.
     </p>
 
     <p>
-Pour celà, nous recherchons des volontaires, tant pour <strong>partager une
-partie de leur connexion</strong> que pour participer au réseau (accès à
-internet, partage local…).
-      </p>
+Pour cela, nous recherchons des volontaires intéressés pour participer au projet,
+que ce soit pour <strong>obtenir un accès à Internet Illyse</strong> via ce réseau radio,
+pour <strong>partager une partie de leur connexion existante</strong>
+ou pour <strong>propager le réseau radio</strong> en relayant le signal.
+    </p>
 
       <p>
-Renseigner ce formulaire nous permet de définir quelles <strong>zones
-d'expérimentations</strong> (avec une grande densité de volontaires)
-pourraient-être intéressantes.
+Renseigner ce formulaire nous permet de définir <strong>quelles zones
+couvrir en priorité</strong> pour lancer le projet.
       </p>
 %end
     </div>
@@ -72,14 +72,14 @@ pourraient-être intéressantes.
       <label>
       <input type="radio" name="contrib-type" value="share"
              {{'checked' if data.get('contrib-type') == 'share' else ''}}/>
-      Partager une partie de ma connexion
+      Partager une partie de ma connexion Internet existante
       </label>
     </p>
     <p class="radio">
       <label>
       <input type="radio" name="contrib-type" value="connect"
              {{'checked' if data.get('contrib-type') == 'connect' else ''}}/>
-      Me raccorder au réseau expérimental
+      Me raccorder au réseau radio
       </label>
     </p>
 
@@ -213,7 +213,7 @@ pourraient-être intéressantes.
 
     <p class="help-block">
 Les données collectées dans ce formulaire sont, par défaut, accessibles
-seulement au bureau de FAIMaison.<br />
+seulement aux membres d'Illyse portant ce projet.<br />
 
 Certaines données, précisées ci-dessous, et anonymisées peuvent-être exposées
 sur une carte publique.
