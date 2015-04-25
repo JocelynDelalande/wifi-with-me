@@ -79,7 +79,7 @@ couvrir en priorité</strong> pour lancer le projet.
       <label>
       <input type="radio" name="contrib-type" value="connect"
              {{'checked' if data.get('contrib-type') == 'connect' else ''}}/>
-      Me raccorder au réseau radio
+      Me raccorder au réseau radio pour bénéficier d'un accès à Internet
       </label>
     </p>
 
