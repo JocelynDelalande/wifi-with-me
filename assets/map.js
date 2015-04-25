@@ -4,7 +4,7 @@ $( document ).ready(function() {
     defaults = {
         lat: 45.7531,
         lng: 4.8407,
-        zoom: 13,
+        zoom: 11,
     }
 
     // Icons

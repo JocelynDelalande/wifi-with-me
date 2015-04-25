@@ -2,9 +2,9 @@ $( document ).ready(function() {
 
     // Defaults
     defaults = {
-        lat: ($('#latitude').val()) ? $('#latitude').val() : 45.75384,
-        lng: ($('#longitude').val()) ? $('#longitude').val() : 4.84709,
-        zoom: 13,
+        lat: ($('#latitude').val()) ? $('#latitude').val() : 45.75884,
+        lng: ($('#longitude').val()) ? $('#longitude').val() : 4.82709,
+        zoom: 11,
     }
 
     // Create map
