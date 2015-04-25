@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Illyse − contribution au réseau d'accès Internet radio</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
     <!-- jQuery -->
     <script src="assets/jquery/jquery-1.11.0.min.js" type="text/javascript"></script>
 
