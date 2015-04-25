@@ -16,7 +16,7 @@ html {
 body {
   background-image: url("img/background_main_489.jpg");
   background-repeat: no-repeat;
-  background-position: 50% 35px;
+  background-position: 50% 0px;
   background-size: 100%;
   position: relative;
   min-height: 1500px;
@@ -26,7 +26,7 @@ body {
 
 body > .jumbotron {
   background-color: transparent;
-  padding: 3.5em 0;
+  padding: 2em 0;
 }
 
 body > section {
