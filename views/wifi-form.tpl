@@ -36,6 +36,9 @@ ou pour <strong>propager le réseau radio</strong> en relayant le signal.
 Renseigner ce formulaire nous permet de définir <strong>quelles zones
 couvrir en priorité</strong> pour lancer le projet.
       </p>
+
+<p><img src="assets/img/logo-illyse.png" style="float: left; margin-left: 100px;" />
+<img src="assets/img/logo-ffdn.png" style="float:right; margin-right: 100px;" /></p>
 %end
     </div>
   </header>
