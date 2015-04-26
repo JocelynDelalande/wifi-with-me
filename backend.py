@@ -11,6 +11,7 @@ from email import utils
 from os.path import join, dirname
 
 
+import bottle
 from bottle import route, run, static_file, request, template, FormsDict, redirect, response
 
 ORIENTATIONS = (
@@ -372,3 +373,6 @@ if __name__ == '__main__':
     else:
         run(host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
         DB.close()
+else:
+     # uWSGI support
+     app = application = bottle.default_app()
