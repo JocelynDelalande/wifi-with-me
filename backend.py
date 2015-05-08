@@ -294,7 +294,10 @@ def build_geojson():
     rows = cur.fetchall()
     for row in rows:
         orientations = row['orientations'].split(',')
-        angles = orientations_to_angle(orientations)
+        if row['roof'] == "on":
+             angles = [(0, 360)]
+        else:
+             angles = orientations_to_angle(orientations)
         # Private JSON file
         private_features.append({
             "type" : "Feature",
