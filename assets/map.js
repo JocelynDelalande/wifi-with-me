@@ -33,7 +33,7 @@ $( document ).ready(function() {
                 if (feature.properties.place.hasOwnProperty('floor')) feature.properties.popupContent += '<li>Étage: '+feature.properties.place.floor+'</li>';
                 if (feature.properties.place.orientations[0]) feature.properties.popupContent += '<li>Orientation: '+feature.properties.place.orientations.join(', ')+'</li>';
                 if (feature.properties.place.roof) feature.properties.popupContent += '<li>Accès au toit'+'</li>';
-                feature.properties.popupContent += '</ul>'
+                feature.properties.popupContent += '</ul>';
             }
 
             if (feature.properties.comment) {
