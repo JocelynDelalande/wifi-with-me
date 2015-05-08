@@ -7,6 +7,25 @@ $( document ).ready(function() {
         zoom: 13,
     }
 
+    // Icons
+
+	var leecherIcon = L.icon({
+		//iconUrl: '../assets/leaflet/images/marker-blue.png',
+        iconUrl: '../assets/leaflet/images/marker-icon.png',
+		iconSize: [25, 41],
+		iconAnchor: [16, 37],
+		popupAnchor: [0, -28]
+	});
+
+
+    var seederIcon = L.icon({
+        iconUrl: '../assets/leaflet/images/marker-icon-red.png',
+		iconSize: [25, 41],
+		iconAnchor: [16, 37],
+		popupAnchor: [0, -28]
+	});
+
+
     // Create map
     var map = L.map('map', {scrollWheelZoom: false}).setView([defaults.lat,defaults.lng], defaults.zoom);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -60,7 +79,16 @@ $( document ).ready(function() {
         var featureLayer = L.geoJson(data, {
             onEachFeature: function(feature, layer) {
                 buildPopupContent(feature, layer);
-                drawSemiCircles(feature, layer); }
+                drawSemiCircles(feature, layer); },
+            pointToLayer: function(feature, latlng) {
+                var icon;
+                if (feature.properties.contrib_type == 'connect') {
+                    icon = leecherIcon;
+                } else {
+                    icon = seederIcon;
+                }
+                return L.marker(latlng, {icon: icon});
+            }
         }).addTo(map);
 
         // Auto Zoom
