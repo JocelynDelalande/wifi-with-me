@@ -13,7 +13,7 @@ $( document ).ready(function() {
 		//iconUrl: '../assets/leaflet/images/marker-blue.png',
         iconUrl: '../assets/leaflet/images/marker-icon.png',
 		iconSize: [25, 41],
-		iconAnchor: [16, 37],
+		iconAnchor: [12, 41],
 		popupAnchor: [0, -28]
 	});
 
@@ -21,7 +21,7 @@ $( document ).ready(function() {
     var seederIcon = L.icon({
         iconUrl: '../assets/leaflet/images/marker-icon-red.png',
 		iconSize: [25, 41],
-		iconAnchor: [16, 37],
+		iconAnchor: [12, 41],
 		popupAnchor: [0, -28]
 	});
 
