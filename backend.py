@@ -314,6 +314,7 @@ def build_geojson():
                     'orientations' : orientations,
                     'angles' : angles,
                     'roof' : row['roof'],
+                    'contrib_type' : row['contrib_type']
                 },
                 "comment" : row['comment']
              }
@@ -331,7 +332,7 @@ def build_geojson():
                  "coordinates": [row['longitude'], row['latitude']],
             },
              "id" : row['id'],
-             "properties": {}
+             "properties": {'contrib_type': row['contrib_type']}
         }
 
         # Add optionnal variables
