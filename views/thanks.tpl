@@ -9,13 +9,10 @@ Votre contribution a bien été enregistrée.
 Si vous voulez <strong>rester en
 contact</strong> avec l'association, nous rencontrer ou vous tenir informé, ça
 se passe sur
-<a href="https://www.faimaison.net/pages/contact.html">la page contact</a> de
+<a href="//www.faimaison.net/pages/contact.html">la page contact</a> de
 l'association.
 </p>
 
 <p>
 Vous pouvez consulter la <a href="../map">carte publique avec tous les autres contributions</a>.
 </p>
-
-
-

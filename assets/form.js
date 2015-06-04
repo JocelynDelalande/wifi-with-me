@@ -9,8 +9,8 @@ $( document ).ready(function() {
 
     // Create map
     var map = L.map('map', {scrollWheelZoom: false}).setView([defaults.lat,defaults.lng], defaults.zoom);
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="//openstreetmap.org">OpenStreetMap</a> contributors, <a href="//creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="//mapbox.com">Mapbox</a>',
         maxZoom: 18
     }).addTo(map);
 
@@ -48,7 +48,7 @@ $( document ).ready(function() {
 
         // Geocoding
         var searchString = $('#search').val();
-        $.getJSON('http://nominatim.openstreetmap.org/search?limit=5&format=json&q='+searchString, function(data){
+        $.getJSON('//nominatim.openstreetmap.org/search?limit=5&format=json&q='+searchString, function(data){
 
             var items = [];
             $.each(data, function(key, val) {

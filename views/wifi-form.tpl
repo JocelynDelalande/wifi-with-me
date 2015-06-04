@@ -19,7 +19,7 @@
 
 %else:
     <p>
-L'association <a href="http://faimaison.net">FAIMaison</a> expérimente à
+L'association <a href="//www.faimaison.net">FAIMaison</a> expérimente à
 grande échelle (Nantes et environs) la création d'un réseau sans-fil à
 longue portée à des fins, entre autres, de <em>partage</em> et
 <em>fourniture</em> d'<strong>accès à internet</strong>.

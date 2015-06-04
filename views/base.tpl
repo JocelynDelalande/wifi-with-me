@@ -48,7 +48,7 @@
 	à les consulter et les étudier : ne fournissez pas de données si vous n'avez
 	pas confiance en FAImaison.
         <br>
-        <a href="https://www.faimaison.net" target="_blank">FAImaison.net</a> -
+        <a href="//www.faimaison.net" target="_blank">FAImaison.net</a> -
         <a href="./legal">Vos droits d'accès et de rectification de vos données
 	personnelles</a>
     </p>
