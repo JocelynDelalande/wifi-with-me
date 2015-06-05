@@ -14,5 +14,5 @@ l'association.
 </p>
 
 <p>
-Vous pouvez consulter la <a href="../map">carte publique avec tous les autres contributions</a>.
+Vous pouvez consulter la <a href="./map">carte publique avec tous les autres contributions</a>.
 </p>

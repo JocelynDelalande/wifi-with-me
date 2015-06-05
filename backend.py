@@ -11,7 +11,9 @@ from email import utils
 from os.path import join, dirname
 
 
-from bottle import route, run, static_file, request, template, FormsDict, redirect, response
+from bottle import route, run, static_file, request, template, FormsDict, redirect, response, Bottle
+
+URL_PREFIX = os.environ.get('URL_PREFIX', '')
 
 ORIENTATIONS = (
     ('N', 'Nord'),
@@ -70,11 +72,13 @@ GEOJSON_NAME = 'public.json'
 
 ANTISPAM_FIELD = 'url'
 
-@route('/')
-def home():
-     redirect("/wifi-form")
+app = Bottle()
 
-@route('/wifi-form')
+@app.route('/')
+def home():
+     redirect(urlparse.urljoin(request.path,join(URL_PREFIX, 'wifi-form')))
+
+@app.route('/wifi-form')
 def show_wifi_form():
     return template('wifi-form', errors=None, data = FormsDict(),
                     orientations=ORIENTATIONS, geojson=GEOJSON_NAME)
@@ -103,7 +107,7 @@ VALUES (:name, :contrib_type, :latitude, :longitude, :phone, :email, :access_typ
         :privacy_name, :privacy_email, :privacy_place_details, :privacy_coordinates, :privacy_comment, :date)
 """.format(TABLE_NAME), tosave)
 
-@route('/wifi-form', method='POST')
+@app.route('/wifi-form', method='POST')
 def submit_wifi_form():
     required = ('name', 'contrib-type',
                 'latitude', 'longitude')
@@ -198,18 +202,18 @@ def submit_wifi_form():
         # Rebuild GeoJSON
         build_geojson()
 
-        return redirect(urlparse.urljoin(request.path,'thanks'))
+        return redirect(urlparse.urljoin(request.path,join(URL_PREFIX,'thanks')))
 
-@route('/thanks')
+@app.route('/thanks')
 def wifi_form_thanks():
     return template('thanks')
 
-@route('/assets/<filename:path>')
+@app.route('/assets/<filename:path>')
 def send_asset(filename):
     return static_file(filename, root=join(dirname(__file__), 'assets'))
 
 
-@route('/legal')
+@app.route('/legal')
 def legal():
     return template('legal')
 
@@ -218,11 +222,11 @@ def legal():
 Results Map
 """
 
-@route('/map')
+@app.route('/map')
 def public_map():
     return template('map', geojson=GEOJSON_NAME)
 
-@route('/public.json')
+@app.route('/public.json')
 def public_geojson():
     return static_file('public.json', root=join(dirname(__file__), 'json/'))
 
@@ -363,6 +367,7 @@ def build_geojson():
 DEBUG = bool(os.environ.get('DEBUG', False))
 LISTEN_ADDR= os.environ.get('BIND_ADDR', 'localhost')
 LISTEN_PORT= int(os.environ.get('BIND_PORT', 8080))
+URL_PREFIX = os.environ.get('URL_PREFIX', '').strip('/')
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
@@ -371,5 +376,11 @@ if __name__ == '__main__':
         if sys.argv[1] == 'buildgeojson':
             build_geojson()
     else:
-        run(host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
-        DB.close()
+         if URL_PREFIX:
+              print('Using url prefix "{}"'.format(URL_PREFIX))
+              root_app = Bottle()
+              root_app.mount('/{}/'.format(URL_PREFIX), app)
+              run(root_app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
+         else:
+              run(app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
+         DB.close()
