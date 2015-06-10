@@ -52,3 +52,23 @@ Drop the database
     $ rm db.sqlite3
 
 What else ?
+
+Customizing appearance
+======================
+
+Wether you like or not balloons, you may want to override some templates and/or
+static files.
+
+You can mention a `CUSTOMIZATION_DIR` as environ variable. In that dir, you can
+create *assets* and *views* subdirs, containing files with the name of the
+original files you want to override from default *assets* and *views*.
+
+For example to override only *main.css* and *base.tpl*, you would set
+`CUSTOMIZATION_DIR=/home/alice/my-fancy-isp-theme` and use the following directory
+layout :
+
+    /home/alice/my-fancy-isp-theme/
+    ├── assets
+    │   └── main.css
+    └── views
+        └── base.tpl

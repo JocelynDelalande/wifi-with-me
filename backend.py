@@ -8,9 +8,9 @@ import urlparse
 import datetime
 import json
 from email import utils
-from os.path import join, dirname
+from os.path import join, dirname, exists
 
-
+import bottle
 from bottle import route, run, static_file, request, template, FormsDict, redirect, response, Bottle
 
 URL_PREFIX = os.environ.get('URL_PREFIX', '')
@@ -210,8 +210,11 @@ def wifi_form_thanks():
 
 @app.route('/assets/<filename:path>')
 def send_asset(filename):
-    return static_file(filename, root=join(dirname(__file__), 'assets'))
-
+     for i in STATIC_DIRS:
+          path = join(i, filename)
+          if exists(path):
+               return static_file(filename, root=i)
+     raise bottle.HTTPError(404)
 
 @app.route('/legal')
 def legal():
@@ -368,6 +371,9 @@ DEBUG = bool(os.environ.get('DEBUG', False))
 LISTEN_ADDR= os.environ.get('BIND_ADDR', 'localhost')
 LISTEN_PORT= int(os.environ.get('BIND_PORT', 8080))
 URL_PREFIX = os.environ.get('URL_PREFIX', '').strip('/')
+CUSTOMIZATION_DIR = os.environ.get('CUSTOMIZATION_DIR', None)
+STATIC_DIRS = [join(dirname(__file__), 'assets')]
+
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
@@ -376,11 +382,19 @@ if __name__ == '__main__':
         if sys.argv[1] == 'buildgeojson':
             build_geojson()
     else:
-         if URL_PREFIX:
-              print('Using url prefix "{}"'.format(URL_PREFIX))
-              root_app = Bottle()
-              root_app.mount('/{}/'.format(URL_PREFIX), app)
-              run(root_app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
-         else:
-              run(app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
-         DB.close()
+        if URL_PREFIX:
+            print('Using url prefix "{}"'.format(URL_PREFIX))
+            root_app = Bottle()
+            root_app.mount('/{}/'.format(URL_PREFIX), app)
+            run(root_app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
+
+        if CUSTOMIZATION_DIR:
+             custom_templates_dir = join(CUSTOMIZATION_DIR, 'views')
+             if exists(custom_templates_dir):
+                 bottle.TEMPLATE_PATH.insert(0, custom_templates_dir)
+             custom_assets_dir = join(CUSTOMIZATION_DIR, 'assets')
+             if exists(custom_assets_dir):
+                 STATIC_DIRS.insert(0, custom_assets_dir)
+
+        run(app, host=LISTEN_ADDR, port=LISTEN_PORT, reloader=DEBUG)
+        DB.close()
