@@ -113,14 +113,16 @@ pourraient être intéressantes.
     confort.
     </p>
     <p>
-      <label for="bandwidth">Débit total (Mbps)</label>
+      <label for="bandwidth">Débit total</label>
       <input name="bandwidth" value="{{data.get('bandwidth', '')}}"
-             id="bandwidth" type="number" min="0" class="form-control"/>
+             id="bandwidth" type="number" min="0" class="form-control"
+             placeholder="(débit descendant, en Mbps)"/>
     </p>
     <p>
-      <label for="share-part">Je souhaite partager (au max.) (Mbps)</label>
+      <label for="share-part">Je souhaite partager (au max.)</label>
       <input name="share-part" value="{{data.get('share-part', '')}}"
-             id="share-part" type="number" min="0" class="form-control"/>
+             id="share-part" type="number" min="0" class="form-control"
+             placeholder="(débit descendant, en Mbps)"/>
     </p>
     </div>
 
