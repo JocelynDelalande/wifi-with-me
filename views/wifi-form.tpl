@@ -26,7 +26,7 @@ longue portée à des fins, entre autres, de <em>partage</em> et
     </p>
 
     <p>
-Pour celà, nous recherchons des volontaires, tant pour <strong>partager une
+Pour cela, nous recherchons des volontaires, tant pour <strong>partager une
 partie de leur connexion</strong> que pour participer au réseau (accès à
 internet, partage local…).
       </p>
@@ -34,7 +34,7 @@ internet, partage local…).
       <p>
 Renseigner ce formulaire nous permet de définir quelles <strong>zones
 d'expérimentations</strong> (avec une grande densité de volontaires)
-pourraient-être intéressantes.
+pourraient être intéressantes.
       </p>
 %end
     </div>
@@ -208,7 +208,7 @@ pourraient-être intéressantes.
 Les données collectées dans ce formulaire sont, par défaut, accessibles
 seulement au bureau de FAIMaison.<br />
 
-Certaines données, précisées ci-dessous, et anonymisées peuvent-être exposées
+Certaines données, précisées ci-dessous et anonymisées, peuvent-être exposées
 sur une carte publique.
     </p>
 
