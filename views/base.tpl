@@ -42,7 +42,7 @@
     <p>
 	Ce que vous autorisez à publier est diffusé sous licence
 	<a href="http://opendatacommons.org/licenses/by/summary/">ODC-BY
-	1.0</a>.
+	1.0</a>.<br />
 
         Vos données personnelles sont stockées sur les serveurs
 	de FAImaison durant <em>un an</em>, sauf demande de votre part.<br />
