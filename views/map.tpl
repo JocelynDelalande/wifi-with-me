@@ -12,6 +12,6 @@
 </p>
 <p>
   Télécharger le fichier <a href="{{geojson}}">GeoJSON</a> (base de données mise sous
-  licence <a href="http://opendatacommons.org/licenses/odbl/summary/">ODbL
+  licence <a href="http://opendatacommons.org/licenses/by/summary/">ODC-BY
   1.0</a>).
 </p>
