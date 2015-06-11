@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 import cgi
 import os
@@ -279,9 +279,9 @@ def orientations_to_angle(orientations):
      return merge_intervals(angles)
 
 # Save feature collection to a json file
-def save_featurecollection_json(id, features, licenses = None):
+def save_featurecollection_json(id, features, license = None):
     with open('json/' + id + '.json', 'w') as outfile:
-        if licenses == None:
+        if license == None:
             json.dump({
                 "type" : "FeatureCollection",
                 "features" : features,
@@ -292,7 +292,7 @@ def save_featurecollection_json(id, features, licenses = None):
                 "type" : "FeatureCollection",
                 "features" : features,
                 "id" : id,
-                "licenses" : licenses,
+                "license" : license,
             }, outfile)
            
 
@@ -374,11 +374,11 @@ def build_geojson():
 
     # Build GeoJSON Feature Collection
     save_featurecollection_json('private', private_features)
-    public_json_licenses = {
+    public_json_license = {
         "type" : GEOJSON_LICENSE_TYPE,
         "url" : GEOJSON_LICENSE_URL
     }
-    save_featurecollection_json('public', public_features, public_json_licenses)
+    save_featurecollection_json('public', public_features, public_json_license)
 
 
 
