@@ -69,7 +69,7 @@ DB_COLS = (
 )
 
 GEOJSON_NAME = 'public.json'
-GEOJSON_LICENSE_TYPE = 'ODC-BY'
+GEOJSON_LICENSE_TYPE = 'ODC-BY-1.0'
 GEOJSON_LICENSE_URL = 'http://opendatacommons.org/licenses/by/1.0/'
 
 ANTISPAM_FIELD = 'url'
