@@ -69,6 +69,8 @@ DB_COLS = (
 )
 
 GEOJSON_NAME = 'public.json'
+GEOJSON_LICENSE_TYPE = 'ODC-BY'
+GEOJSON_LICENSE_URL = 'http://opendatacommons.org/licenses/by/1.0/'
 
 ANTISPAM_FIELD = 'url'
 
@@ -277,13 +279,22 @@ def orientations_to_angle(orientations):
      return merge_intervals(angles)
 
 # Save feature collection to a json file
-def save_featurecollection_json(id, features):
+def save_featurecollection_json(id, features, licenses = None):
     with open('json/' + id + '.json', 'w') as outfile:
-        json.dump({
-            "type" : "FeatureCollection",
-            "features" : features,
-            "id" : id,
-        }, outfile)
+        if licenses == None:
+            json.dump({
+                "type" : "FeatureCollection",
+                "features" : features,
+                "id" : id,
+            }, outfile)
+        else:
+             json.dump({
+                "type" : "FeatureCollection",
+                "features" : features,
+                "id" : id,
+                "licenses" : licenses,
+            }, outfile)
+           
 
 # Build GeoJSON files from DB
 def build_geojson():
@@ -363,7 +374,11 @@ def build_geojson():
 
     # Build GeoJSON Feature Collection
     save_featurecollection_json('private', private_features)
-    save_featurecollection_json('public', public_features)
+    public_json_licenses = {
+        "type" : GEOJSON_LICENSE_TYPE,
+        "url" : GEOJSON_LICENSE_URL
+    }
+    save_featurecollection_json('public', public_features, public_json_licenses)
 
 
 
