@@ -210,7 +210,7 @@ pourraient être intéressantes.
 Les données collectées dans ce formulaire sont, par défaut, accessibles
 seulement au bureau de FAIMaison.<br />
 
-Certaines données, précisées ci-dessous et anonymisées, peuvent-être exposées
+Certaines données, précisées ci-dessous et anonymisées, peuvent être exposées
 sur une carte publique.
     </p>
 
