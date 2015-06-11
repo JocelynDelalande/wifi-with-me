@@ -207,11 +207,11 @@ pourraient être intéressantes.
     <h2>Mes données</h2>
 
     <p class="help-block">
-Les données collectées dans ce formulaire sont, par défaut, accessibles
-seulement au bureau de FAIMaison.<br />
+Les données collectées dans ce formulaire sont accessibles
+au bureau de FAIMaison.<br />
 
-Certaines données, précisées ci-dessous et anonymisées, peuvent être exposées
-sur une carte publique.
+Vous pouvez cochez ci-dessous celles que vous autorisez à apparaître sur une
+carte publique et à être librement diffusées.
     </p>
 
     <div class="form-group">
