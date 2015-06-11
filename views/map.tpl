@@ -11,5 +11,7 @@
   <img src="assets/leaflet/images/marker-icon.png" /> Personne souhaitant se connecter au réseau radio
 </p>
 <p>
-  Télécharger le fichier <a href="{{geojson}}">GeoJSON</a>.
+  Télécharger le fichier <a href="{{geojson}}">GeoJSON</a> (base de données mise sous
+  licence <a href="http://opendatacommons.org/licenses/odbl/summary/">ODbL
+  1.0</a>).
 </p>
