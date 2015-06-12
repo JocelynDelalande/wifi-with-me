@@ -16,3 +16,10 @@ qui vous concernent, que vous pouvez exercer en vous adressant à bureau (at) fa
 Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des
 données vous concernant.
 </p>
+
+<p>
+Les données rendues publiques sont diffusées sous licence <a
+href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons version
+1.0</a> (ODC-BY 1.0) : elles sont librement réutilisables à la seule
+condition d'en attribuer la paternité à FAImaison.
+</p>
