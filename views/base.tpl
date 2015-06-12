@@ -40,16 +40,11 @@
 
   <footer>
     <p>
-	Ce que vous autorisez à publier est diffusé sous licence
-	<a href="http://opendatacommons.org/licenses/by/summary/">ODC-BY
-	1.0</a>.<br />
-
-        Vos données personnelles sont stockées sur les serveurs
-	de FAImaison durant <em>un an</em>, sauf demande de votre part.<br />
-
-        Les données personnelles non publiées ne seront pas partagées avec d'autres
-	associations, entreprises ou collectivités. Des membres individuels de
-	FAImaison seront toutefois amenés à les consulter et les étudier : ne
+        Les données personnelles que vous ne rendez pas publiques
+	sont stockées exclusivement chez FAImaison durant un an (sauf demande de votre part)
+	et ne seront pas partagées avec d'autres
+	associations, entreprises ou collectivités. Des membres de
+	FAImaison seront toutefois amenés à les étudier : ne
 	fournissez pas de données si vous n'avez pas confiance en FAImaison.
         <br>
         <a href="//www.faimaison.net" target="_blank">FAImaison.net</a> -
