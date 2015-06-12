@@ -210,8 +210,8 @@ pourraient être intéressantes.
 Les données collectées dans ce formulaire sont accessibles
 au bureau de FAIMaison.<br />
 
-Vous pouvez cochez ci-dessous celles que vous autorisez à apparaître sur une
-carte publique et à être librement diffusées.
+Vous pouvez cocher ci-dessous celles que vous voulez bien voir <a
+href="./legal">rendues publiques</a>.
     </p>
 
     <div class="form-group">
