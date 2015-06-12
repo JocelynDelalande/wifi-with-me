@@ -211,7 +211,7 @@ Les données collectées dans ce formulaire sont accessibles
 au bureau de FAIMaison.<br />
 
 Vous pouvez cocher ci-dessous celles que vous voulez bien voir <a
-href="./legal">rendues publiques</a>.
+href="./legal">rendues publiques et librement réutilisées</a>.
     </p>
 
     <div class="form-group">
