@@ -279,26 +279,20 @@ def orientations_to_angle(orientations):
      return merge_intervals(angles)
 
 # Save feature collection to a json file
-def save_featurecollection_json(id, features, license = None):
+def save_featurecollection_json(id, features, license=None):
     with open('json/' + id + '.json', 'w') as outfile:
-        if license == None:
-            json.dump({
-                "type" : "FeatureCollection",
-                "features" : features,
-                "id" : id,
-            }, outfile)
-        else:
-             json.dump({
-                "type" : "FeatureCollection",
-                "features" : features,
-                "id" : id,
-                "license" : license,
-            }, outfile)
-           
+        geojson = {
+            "type" : "FeatureCollection",
+            "features" : features,
+            "id" : id,
+        }
+        if license:
+            geojson['license'] = license
+        json.dump(geojson, outfile)
+
 
 # Build GeoJSON files from DB
 def build_geojson():
-
     # Read from DB
     DB.row_factory = sqlite3.Row
     cur = DB.execute("""
