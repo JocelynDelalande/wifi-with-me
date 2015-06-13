@@ -22,7 +22,7 @@ données vous concernant.
 
 <p>
 Les données rendues publiques sont diffusées sous licence <a
-href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons version
+href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons Attribution version
 1.0</a> (ODC-BY 1.0) : elles sont librement réutilisables à la seule
 condition d'en attribuer la paternité à FAImaison.
 </p>
