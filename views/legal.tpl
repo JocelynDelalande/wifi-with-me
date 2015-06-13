@@ -3,7 +3,10 @@
 <h1>Mentions légales</h1>
 
 <p>
-Les informations recueillies font l’objet d’un traitement informatique.
+Les informations recueillies font l’objet d’un traitement informatique, déclaré
+à la Commission nationale de l'informatique et des libertés (CNIL) sous le
+numéro <a
+href="https://www.faimaison.net/files/cnil-faimaison-1819684-withwithme.pdf">1819684</a>.
 </p>
 
 <p>
