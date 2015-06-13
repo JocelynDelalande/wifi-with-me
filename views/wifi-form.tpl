@@ -19,7 +19,7 @@
 
 %else:
     <p>
-L'association <a href="//www.faimaison.net">FAIMaison</a> expérimente à
+L'association <a href="//www.faimaison.net">FAImaison</a> expérimente à
 grande échelle (Nantes et environs) la création d'un réseau sans-fil à
 longue portée à des fins, entre autres, de <em>partage</em> et
 <em>fourniture</em> d'<strong>accès à internet</strong>.
@@ -208,7 +208,7 @@ pourraient être intéressantes.
 
     <p class="help-block">
 Les données collectées dans ce formulaire sont accessibles
-au bureau de FAIMaison.<br />
+au bureau de FAImaison.<br />
 
 Vous pouvez cocher ci-dessous celles que vous voulez bien voir <a
 href="./legal">rendues publiques et librement réutilisées</a>.

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>FAIMaison − contribution à l'expérimentation wifi</title>
+    <title>FAImaison − contribution à l'expérimentation wifi</title>
 
     <!-- jQuery -->
     <script src="assets/jquery/jquery-1.11.0.min.js" type="text/javascript"></script>
