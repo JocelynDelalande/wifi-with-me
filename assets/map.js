@@ -46,11 +46,12 @@ $( document ).ready(function() {
         function buildPopupContent(feature, layer) {
             feature.properties.popupContent = '';
 
+            var featureIdLink = '<a href="#' + feature.id + '">#' + feature.id + '</a>';
             if (feature.properties.name) {
-                feature.properties.popupContent += '<h2>#'+feature.id+': '+feature.properties.name+'</h2>';
+                feature.properties.popupContent += '<h2>'+featureIdLink+': '+feature.properties.name+'</h2>';
             }
             else {
-                feature.properties.popupContent += '<h2>#'+feature.id+'</h2>';
+                feature.properties.popupContent += '<h2>'+ featureIdLink +'</h2>';
             }
 
             if (feature.properties.place) {
@@ -66,6 +67,7 @@ $( document ).ready(function() {
             }
 
             layer.bindPopup(feature.properties.popupContent);
+            layer.id = feature.id;
         }
 
         function drawSemiCircles(feature, layer) {
@@ -85,7 +87,8 @@ $( document ).ready(function() {
         var featureLayer = L.geoJson(data, {
             onEachFeature: function(feature, layer) {
                 buildPopupContent(feature, layer);
-                drawSemiCircles(feature, layer); },
+                drawSemiCircles(feature, layer);
+            },
             pointToLayer: function(feature, latlng) {
                 var icon;
                 if (feature.properties.contrib_type == 'connect') {
@@ -97,11 +100,39 @@ $( document ).ready(function() {
             }
         }).addTo(map);
 
-        // Auto Zoom
-        // Strange leaflet bug, we need to set a null timeout
-        setTimeout(function () {
-            map.fitBounds(featureLayer.getBounds())
-        }, 2);
+
+        function openMarker(id) {
+            for (var i in featureLayer._layers) {
+                if (featureLayer._layers[i].id == id) {
+                    // Get desired marker
+                    var thisMarker = featureLayer._layers[i];
+                    // Center map on marker and zoom
+                    map.panTo(thisMarker.getLatLng());
+                    map.setZoom(16);
+                    //  Open popup
+                    thisMarker.openPopup();
+                }
+            }
+        }
+
+        // Open popup if hash is present.
+        if (window.location.hash) {
+            var id = window.location.hash.substr(-1);
+            openMarker(id);
+        }
+        else {
+            // Auto Zoom
+            // Strange leaflet bug, we need to set a null timeout
+            setTimeout(function () {
+                map.fitBounds(featureLayer.getBounds())
+            }, 2);
+        }
+
+        // Bind window hash change
+        window.onhashchange = function() {
+            var id = window.location.hash.substr(-1);
+            openMarker(id);
+        }
 
     });
 
