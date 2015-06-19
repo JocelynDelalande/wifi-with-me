@@ -39,13 +39,13 @@ $( document ).ready(function() {
         $('#longitude').val(m.lng);
     }
 
-	// Display tiny circles on existing public points
-	var GeoJsonPath = $('#map').data('json');
+    // Display tiny circles on existing public points
+    var GeoJsonPath = $('#map').data('json');
     $.getJSON(GeoJsonPath, function(data){
-	    var featureLayer = L.geoJson(data, {
-		    pointToLayer: function (feature, latlng) {
-			    return L.circleMarker(latlng, {color: '#00B300'});
-		    }
+        var featureLayer = L.geoJson(data, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {color: '#00B300'});
+            }
         }).addTo(map);
     });
 
