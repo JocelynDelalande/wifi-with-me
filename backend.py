@@ -95,6 +95,17 @@ def escape(s):
      else:
           return s
 
+def json_url(json_filename):
+    """ Returns (relative) json URL with a querystring mentioning file mtime
+
+    That's to prevent too much browser caching (mtime will change on file
+    generation, changing querystring) while letting browser doing relevant
+    caching.
+    """
+    file_path = join(dirname(__file__), 'json/', json_filename)
+    mtime = os.path.getmtime(file_path)
+    return '{}?mtime={}'.format(json_filename, mtime)
+
 def save_to_db(db, dic):
     # SQLite is picky about encoding else
     tosave = {bytes(k):escape(v.decode('utf-8')) if isinstance(v,str)
@@ -172,7 +183,7 @@ def submit_wifi_form():
 
     if errors:
         return template('wifi-form', errors=errors, data=request.forms,
-                        orientations=ORIENTATIONS, geojson=GEOJSON_NAME)
+                        orientations=ORIENTATIONS, geojson=json_url(GEOJSON_NAME))
     else:
         d = request.forms
         save_to_db(DB, {
@@ -229,7 +240,7 @@ Results Map
 
 @app.route('/map')
 def public_map():
-    return template('map', geojson=GEOJSON_NAME)
+    return template('map', geojson=json_url(GEOJSON_NAME))
 
 @app.route('/public.json')
 def public_geojson():

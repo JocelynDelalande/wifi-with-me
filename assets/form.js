@@ -41,8 +41,7 @@ $( document ).ready(function() {
 
     // Display tiny circles on existing public points
     var GeoJsonPath = $('#map').data('json');
-    // We add current time to bypass browser cache
-    $.getJSON(GeoJsonPath + '?time=' + Date.now(), function(data){
+    $.getJSON(GeoJsonPath, function(data){
         var featureLayer = L.geoJson(data, {
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {color: '#00B300'});

@@ -41,8 +41,7 @@ $( document ).ready(function() {
 
     // Get JSON
     var GeoJsonPath = $('#map').data('json')
-    // We add current time to bypass browser cache
-    $.getJSON(GeoJsonPath + '?time=' + Date.now(), function(data){
+    $.getJSON(GeoJsonPath, function(data){
 
         function buildPopupContent(feature, layer) {
             feature.properties.popupContent = '';
