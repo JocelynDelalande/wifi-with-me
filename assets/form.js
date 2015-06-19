@@ -71,6 +71,7 @@ $( document ).ready(function() {
 
                 marker.setLatLng({lat:$(this).data('lat'), lng:$(this).data('lng')}).update();
                 map.panTo({lat:$(this).data('lat'), lng:$(this).data('lng')});
+                map.setZoom(13);
                 mapUpdateCoords();
                 $('#modal').modal('hide');
             });
