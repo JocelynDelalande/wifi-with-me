@@ -14,6 +14,14 @@ $( document ).ready(function() {
         maxZoom: 18
     }).addTo(map);
 
+    // Add scale control
+    L.control.scale({
+        position: 'bottomleft',
+        metric: true,
+        imperial: false,
+        maxWidth: 150
+    }).addTo(map);
+
     // Create marker
     var marker = L.marker([defaults.lat,defaults.lng], {
         draggable: true

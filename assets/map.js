@@ -32,6 +32,14 @@ $( document ).ready(function() {
         maxZoom: 18
     }).addTo(map);
 
+    // Add scale control
+    L.control.scale({
+        position: 'bottomleft',
+        metric: true,
+        imperial: false,
+        maxWidth: 200
+    }).addTo(map);
+
     // Get JSON
     var GeoJsonPath = $('#map').data('json')
     $.getJSON(GeoJsonPath, function(data){
