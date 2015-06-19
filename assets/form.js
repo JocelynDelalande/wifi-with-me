@@ -56,7 +56,7 @@ $( document ).ready(function() {
 
         // Geocoding
         var searchString = $('#search').val();
-        $.getJSON('http://nominatim.openstreetmap.org/search?limit=5&format=json&q='+searchString, function(data){
+        $.getJSON('https://nominatim.openstreetmap.org/search?limit=5&format=json&q='+searchString, function(data){
 
             var items = [];
             $.each(data, function(key, val) {
