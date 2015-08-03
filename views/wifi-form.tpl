@@ -224,7 +224,7 @@ J'autorise qu'apparaissent sur la carte publique :
         <input type="checkbox" name="privacy" value="place_details"
         {{'checked' if (('place_details' in data.getall('privacy')) or not data) else ''}}/>
 
-        Mon étage et mes orientations
+        Mon étage et les orientations de mes fenêtres
       </label>
     </div>
     <div class="checkbox">
