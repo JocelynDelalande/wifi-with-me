@@ -39,7 +39,7 @@ class Contrib(models.Model):
     privacy_coordinates = models.BooleanField(default=True)
     privacy_place_details = models.BooleanField(default=True)
     privacy_comment = models.BooleanField(default=False)
-    date = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         managed = True
