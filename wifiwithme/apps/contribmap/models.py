@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from .fields import CommaSeparatedCharField
+
 
 class Contrib(models.Model):
     id = models.AutoField(primary_key=True, blank=False, null=False)
@@ -18,7 +20,8 @@ class Contrib(models.Model):
     share_part = models.FloatField(blank=True, null=True)
     floor = models.IntegerField(blank=True, null=True)
     floor_total = models.IntegerField(blank=True, null=True)
-    orientations = models.TextField(blank=True, null=True)
+    orientations = CommaSeparatedCharField(
+        blank=True, null=True, max_length=100)
     roof = models.IntegerField(blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
     privacy_name = models.IntegerField(blank=True, null=True)
