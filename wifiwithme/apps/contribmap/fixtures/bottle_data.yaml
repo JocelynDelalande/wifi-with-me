@@ -1,0 +1,16 @@
+- model: contribmap.contrib
+  pk: 1
+  fields: {name: Bill, contrib_type: share, latitude: 47.218371, longitude: -1.553621,
+    phone: '', email: a@example.com, access_type: fiber, connect_local: false, connect_internet: false,
+    bandwidth: 3.0, share_part: 2.0, floor: null, floor_total: null, orientations: '[''N'',
+      ''NO'', ''O'', ''SO'', ''S'', ''SE'', ''E'', ''NE'']', roof: false, comment: '',
+    privacy_name: false, privacy_email: false, privacy_coordinates: true, privacy_place_details: true,
+    privacy_comment: false, date: 'Thu, 03 Mar 2016 12:26:39 -0000'}
+- model: contribmap.contrib
+  pk: 2
+  fields: {name: veau, contrib_type: connect, latitude: 47.2195681123155, longitude: -1.5398025512695312,
+    phone: '0101010101', email: '', access_type: '', connect_local: true, connect_internet: false,
+    bandwidth: null, share_part: null, floor: 1, floor_total: 2, orientations: '[''SE'']',
+    roof: false, comment: '', privacy_name: false, privacy_email: false, privacy_coordinates: false,
+    privacy_place_details: false, privacy_comment: false, date: 'Thu, 03 Mar 2016
+      12:27:24 -0000'}
