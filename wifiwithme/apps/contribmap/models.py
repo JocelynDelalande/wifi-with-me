@@ -44,3 +44,6 @@ class Contrib(models.Model):
     class Meta:
         managed = True
         db_table = 'contribs'
+
+    def __str__(self):
+        return self.name
