@@ -5,3 +5,4 @@ from django.apps import AppConfig
 
 class ContribmapConfig(AppConfig):
     name = 'contribmap'
+    verbose_name = 'Carte collaborative'
