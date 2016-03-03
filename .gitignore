@@ -1,2 +1,7 @@
-db.sqlite3
-json/*
+*.pyc
+__pycache__/
+*~
+*.sqlite3
+wifiwithme/settings/local.py
+var/media/*
+var/static/*
