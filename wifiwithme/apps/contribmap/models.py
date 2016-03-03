@@ -7,7 +7,7 @@ from .fields import CommaSeparatedCharField
 
 class Contrib(models.Model):
     id = models.AutoField(primary_key=True, blank=False, null=False)
-    name = models.TextField()
+    name = models.CharField(max_length=30)
     contrib_type = models.CharField(
         max_length=10, choices=(
             ('connect', 'Me raccorder au réseau expérimental'),
@@ -15,7 +15,7 @@ class Contrib(models.Model):
         ))
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
-    phone = models.TextField(blank=True, null=True)
+    phone = models.CharField(max_length=30, blank=True, default='')
     email = models.EmailField(blank=True)
     access_type = models.CharField(
         max_length=10, blank=True, choices=(
