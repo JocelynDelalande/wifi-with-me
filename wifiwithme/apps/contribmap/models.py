@@ -81,5 +81,35 @@ class Contrib(models.Model):
         db_table = 'contribs'
         verbose_name = 'contribution'
 
+    PRIVACY_MAP = {
+        'name': 'privacy_name',
+        'comment': 'privacey_comment',
+        'floor': 'privacy_place_details',
+        'floor_total': 'privacy_place_details',
+        'orientations': 'privacy_place_details',
+        'roof': 'privacy_place_details',
+    }
+    PUBLIC_FIELDS = set(PRIVACY_MAP.keys())
+
     def __str__(self):
         return '#{} {}'.format(self.pk, self.name)
+
+    def is_public(self):
+        return not self.privacy_coordinates
+
+    def _may_be_public(self, field):
+        return field in self.PUBLIC_FIELDS
+
+    def _is_public(self, field):
+        return getattr(self, self.PRIVACY_MAP[field])
+
+    def get_public_field(self, field):
+        """ Gets safely an attribute in its public form (if any)
+
+        :param field: The field name
+        :return: the field value, or None, if the field is private
+        """
+        if self._may_be_public(field) and self._is_public(field):
+            return getattr(self, field)
+        else:
+            return None
