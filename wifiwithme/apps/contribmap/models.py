@@ -6,6 +6,9 @@ from .fields import CommaSeparatedCharField
 
 
 class Contrib(models.Model):
+    CONTRIB_CONNECT = 'connect'
+    CONTRIB_SHARE = 'share'
+
     id = models.AutoField(primary_key=True, blank=False, null=False)
     name = models.CharField(
         'Nom / Pseudo',
@@ -13,8 +16,8 @@ class Contrib(models.Model):
     contrib_type = models.CharField(
         'Type de contribution',
         max_length=10, choices=(
-            ('connect', 'Me raccorder au réseau expérimental'),
-            ('share', 'Partager une partie de ma connexion')
+            (CONTRIB_CONNECT, 'Me raccorder au réseau expérimental'),
+            (CONTRIB_SHARE, 'Partager une partie de ma connexion')
         ))
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
