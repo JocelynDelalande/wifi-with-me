@@ -78,6 +78,21 @@ class Contrib(models.Model):
         default=False)
     date = models.DateTimeField(auto_now_add=True)
 
+    CONNECTABILITY = (
+		    ('A_ETUDIER','à étudier'),  
+		    ('A_CONNECTER','à connecter'),    
+		    ('CONNECTE', 'connecté'),    
+		    ('PAS_CONNECTABLE', 'pas connectable'),  
+		    )
+
+    status = models.CharField(
+		    blank=True,
+		    null=True, 
+		    max_length= 250, 
+		    choices=CONNECTABILITY, 
+		    default='A_ETUDIER')
+
+
     class Meta:
         managed = True
         db_table = 'contribs'
