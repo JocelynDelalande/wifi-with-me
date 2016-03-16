@@ -77,12 +77,17 @@ class Contrib(models.Model):
         'commentaire public',
         default=False)
     date = models.DateTimeField(auto_now_add=True)
+    
+    STATUS_TOSTUDY = 'TOSTUDY'
+    STATUS_TOCONNECT = 'TOCONNECT'
+    STATUS_CONNECTED = 'CONNECTED'
+    STATUS_WONTCONNECT = 'WONTCONNECT'
 
     CONNECTABILITY = (
-		    ('A_ETUDIER','à étudier'),  
-		    ('A_CONNECTER','à connecter'),    
-		    ('CONNECTE', 'connecté'),    
-		    ('PAS_CONNECTABLE', 'pas connectable'),  
+		    (STATUS_TOSTUDY,'à étudier'),  
+		    (STATUS_TOCONNECT,'à connecter'),    
+		    (STATUS_CONNECTED, 'connecté'),    
+		    (STATUS_WONTCONNECT, 'pas connectable'),  
 		    )
 
     status = models.CharField(
